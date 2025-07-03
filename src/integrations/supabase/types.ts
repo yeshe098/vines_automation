@@ -9,7 +9,166 @@ export type Json =
 export type Database = {
   public: {
     Tables: {
-      [_ in never]: never
+      orders: {
+        Row: {
+          agent_id: string
+          amount: number
+          buyer_id: string
+          created_at: string
+          id: string
+          requirements: string | null
+          status: string
+          updated_at: string
+        }
+        Insert: {
+          agent_id: string
+          amount: number
+          buyer_id: string
+          created_at?: string
+          id?: string
+          requirements?: string | null
+          status?: string
+          updated_at?: string
+        }
+        Update: {
+          agent_id?: string
+          amount?: number
+          buyer_id?: string
+          created_at?: string
+          id?: string
+          requirements?: string | null
+          status?: string
+          updated_at?: string
+        }
+        Relationships: [
+          {
+            foreignKeyName: "orders_agent_id_fkey"
+            columns: ["agent_id"]
+            isOneToOne: false
+            referencedRelation: "voice_agents"
+            referencedColumns: ["id"]
+          },
+        ]
+      }
+      profiles: {
+        Row: {
+          created_at: string
+          email: string | null
+          full_name: string | null
+          id: string
+          is_seller: boolean
+          updated_at: string
+        }
+        Insert: {
+          created_at?: string
+          email?: string | null
+          full_name?: string | null
+          id: string
+          is_seller?: boolean
+          updated_at?: string
+        }
+        Update: {
+          created_at?: string
+          email?: string | null
+          full_name?: string | null
+          id?: string
+          is_seller?: boolean
+          updated_at?: string
+        }
+        Relationships: []
+      }
+      reviews: {
+        Row: {
+          agent_id: string
+          comment: string | null
+          created_at: string
+          id: string
+          rating: number
+          reviewer_id: string
+        }
+        Insert: {
+          agent_id: string
+          comment?: string | null
+          created_at?: string
+          id?: string
+          rating: number
+          reviewer_id: string
+        }
+        Update: {
+          agent_id?: string
+          comment?: string | null
+          created_at?: string
+          id?: string
+          rating?: number
+          reviewer_id?: string
+        }
+        Relationships: [
+          {
+            foreignKeyName: "reviews_agent_id_fkey"
+            columns: ["agent_id"]
+            isOneToOne: false
+            referencedRelation: "voice_agents"
+            referencedColumns: ["id"]
+          },
+        ]
+      }
+      voice_agents: {
+        Row: {
+          avatar_url: string | null
+          category: string
+          created_at: string
+          delivery_time: number
+          description: string
+          id: string
+          is_active: boolean
+          is_online: boolean
+          languages: string[]
+          name: string
+          price: number
+          rating: number
+          review_count: number
+          specialties: string[]
+          title: string
+          updated_at: string
+        }
+        Insert: {
+          avatar_url?: string | null
+          category: string
+          created_at?: string
+          delivery_time?: number
+          description: string
+          id?: string
+          is_active?: boolean
+          is_online?: boolean
+          languages?: string[]
+          name: string
+          price: number
+          rating?: number
+          review_count?: number
+          specialties?: string[]
+          title: string
+          updated_at?: string
+        }
+        Update: {
+          avatar_url?: string | null
+          category?: string
+          created_at?: string
+          delivery_time?: number
+          description?: string
+          id?: string
+          is_active?: boolean
+          is_online?: boolean
+          languages?: string[]
+          name?: string
+          price?: number
+          rating?: number
+          review_count?: number
+          specialties?: string[]
+          title?: string
+          updated_at?: string
+        }
+        Relationships: []
+      }
     }
     Views: {
       [_ in never]: never

@@ -6,7 +6,7 @@ import { Button } from '@/components/ui/button';
 import { Input } from '@/components/ui/input';
 import { Select, SelectContent, SelectItem, SelectTrigger, SelectValue } from '@/components/ui/select';
 import { Badge } from '@/components/ui/badge';
-import { Search, Star, Clock, Globe, Play } from 'lucide-react';
+import { Search, Star, Clock, Globe, Play, Phone } from 'lucide-react';
 import { Header } from '@/components/Header';
 import { Footer } from '@/components/Footer';
 import { useNavigate } from 'react-router-dom';
@@ -79,8 +79,8 @@ const Agents = () => {
           return b.price - a.price;
         case 'rating':
           return b.rating - a.rating;
-        case 'delivery':
-          return a.delivery_time - b.delivery_time;
+        case 'name':
+          return a.name.localeCompare(b.name);
         default:
           return b.rating - a.rating;
       }
@@ -100,7 +100,7 @@ const Agents = () => {
       <div className="min-h-screen bg-gradient-to-br from-slate-900 via-purple-900 to-slate-900">
         <Header />
         <div className="flex items-center justify-center h-96">
-          <div className="text-white text-xl">Loading agents...</div>
+          <div className="text-white text-xl">Loading voice agents...</div>
         </div>
         <Footer />
       </div>
@@ -113,8 +113,8 @@ const Agents = () => {
       
       <div className="container mx-auto px-4 py-8">
         <div className="mb-8">
-          <h1 className="text-4xl font-bold text-white mb-4">Voice Agents</h1>
-          <p className="text-slate-300 text-lg">Discover the perfect AI voice for your needs</p>
+          <h1 className="text-4xl font-bold text-white mb-4">AI Voice Agents</h1>
+          <p className="text-slate-300 text-lg">Choose the perfect AI voice agent for your business needs</p>
         </div>
 
         {/* Search and Filters */}
@@ -122,7 +122,7 @@ const Agents = () => {
           <div className="relative flex-1">
             <Search className="absolute left-3 top-1/2 transform -translate-y-1/2 text-slate-400 w-4 h-4" />
             <Input
-              placeholder="Search agents..."
+              placeholder="Search voice agents..."
               value={searchTerm}
               onChange={(e) => setSearchTerm(e.target.value)}
               className="pl-10 bg-slate-800 border-slate-700 text-white"
@@ -137,10 +137,8 @@ const Agents = () => {
               <SelectItem value="all">All Categories</SelectItem>
               <SelectItem value="customer_service">Customer Service</SelectItem>
               <SelectItem value="virtual_assistant">Virtual Assistant</SelectItem>
-              <SelectItem value="narration_audiobook">Narration & Audiobook</SelectItem>
-              <SelectItem value="commercial_ads">Commercial Ads</SelectItem>
-              <SelectItem value="podcast_media">Podcast & Media</SelectItem>
-              <SelectItem value="voice_over">Voice Over</SelectItem>
+              <SelectItem value="commercial_ads">Sales & Marketing</SelectItem>
+              <SelectItem value="voice_over">Voice Services</SelectItem>
             </SelectContent>
           </Select>
 
@@ -152,7 +150,7 @@ const Agents = () => {
               <SelectItem value="rating">Highest Rated</SelectItem>
               <SelectItem value="price_low">Price: Low to High</SelectItem>
               <SelectItem value="price_high">Price: High to Low</SelectItem>
-              <SelectItem value="delivery">Fastest Delivery</SelectItem>
+              <SelectItem value="name">Name A-Z</SelectItem>
             </SelectContent>
           </Select>
         </div>
@@ -176,7 +174,7 @@ const Agents = () => {
                           <div className="w-2 h-2 bg-green-400 rounded-full"></div>
                         )}
                         <span className="text-slate-400 text-sm">
-                          {agent.is_online ? 'Online' : 'Offline'}
+                          {agent.is_online ? 'Available' : 'Offline'}
                         </span>
                       </div>
                     </div>
@@ -218,8 +216,8 @@ const Agents = () => {
                       <span className="text-slate-400 text-sm">({agent.review_count})</span>
                     </div>
                     <div className="flex items-center space-x-1 text-slate-400">
-                      <Clock className="w-4 h-4" />
-                      <span className="text-sm">{agent.delivery_time}h</span>
+                      <Phone className="w-4 h-4" />
+                      <span className="text-sm">Ready</span>
                     </div>
                   </div>
                   <div className="text-right">
@@ -234,13 +232,13 @@ const Agents = () => {
                     className="flex-1 border-slate-600 text-slate-300 hover:bg-slate-700"
                   >
                     <Play className="w-4 h-4 mr-2" />
-                    Preview
+                    Try Me
                   </Button>
                   <Button 
                     className="flex-1 bg-gradient-to-r from-blue-600 to-purple-600 hover:from-blue-700 hover:to-purple-700"
                     onClick={() => navigate(`/agent/${agent.id}`)}
                   >
-                    View Details
+                    Buy Now
                   </Button>
                 </div>
               </CardContent>
@@ -250,7 +248,7 @@ const Agents = () => {
 
         {filteredAgents.length === 0 && (
           <div className="text-center py-12">
-            <div className="text-slate-400 text-xl mb-4">No agents found</div>
+            <div className="text-slate-400 text-xl mb-4">No voice agents found</div>
             <p className="text-slate-500">Try adjusting your search criteria</p>
           </div>
         )}

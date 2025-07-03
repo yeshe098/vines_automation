@@ -2,7 +2,7 @@
 import { Card, CardContent, CardDescription, CardHeader, CardTitle } from "@/components/ui/card";
 import { Button } from "@/components/ui/button";
 import { Badge } from "@/components/ui/badge";
-import { Star, Clock, Globe, Play } from "lucide-react";
+import { Star, Clock, Globe, Play, Phone } from "lucide-react";
 import { useNavigate } from "react-router-dom";
 import { useState, useEffect } from "react";
 import { supabase } from "@/integrations/supabase/client";
@@ -55,9 +55,9 @@ export const FeaturedAgents = () => {
     <section className="py-20 px-4">
       <div className="container mx-auto">
         <div className="text-center mb-12">
-          <h2 className="text-4xl font-bold text-white mb-4">Featured Voice Agents</h2>
+          <h2 className="text-4xl font-bold text-white mb-4">Our AI Voice Agents</h2>
           <p className="text-slate-300 text-lg max-w-2xl mx-auto">
-            Discover top-rated AI voice agents trusted by thousands of customers worldwide
+            Professional AI voice agents designed for your business needs. From customer service to appointment booking - we've got you covered.
           </p>
         </div>
         
@@ -79,7 +79,7 @@ export const FeaturedAgents = () => {
                           <div className="w-2 h-2 bg-green-400 rounded-full"></div>
                         )}
                         <span className="text-slate-400 text-sm">
-                          {agent.is_online ? 'Online' : 'Offline'}
+                          {agent.is_online ? 'Available' : 'Offline'}
                         </span>
                       </div>
                     </div>
@@ -113,8 +113,8 @@ export const FeaturedAgents = () => {
                       <span className="text-slate-400 text-sm">({agent.review_count})</span>
                     </div>
                     <div className="flex items-center space-x-1 text-slate-400">
-                      <Clock className="w-4 h-4" />
-                      <span className="text-sm">{agent.delivery_time}h</span>
+                      <Phone className="w-4 h-4" />
+                      <span className="text-sm">Ready</span>
                     </div>
                   </div>
                   <div className="text-right">
@@ -129,13 +129,13 @@ export const FeaturedAgents = () => {
                     className="flex-1 border-slate-600 text-slate-300 hover:bg-slate-700"
                   >
                     <Play className="w-4 h-4 mr-2" />
-                    Preview
+                    Try Me
                   </Button>
                   <Button 
                     className="flex-1 bg-gradient-to-r from-blue-600 to-purple-600 hover:from-blue-700 hover:to-purple-700"
                     onClick={() => navigate(`/agent/${agent.id}`)}
                   >
-                    View Details
+                    Learn More
                   </Button>
                 </div>
               </CardContent>
@@ -150,7 +150,7 @@ export const FeaturedAgents = () => {
             className="border-slate-600 text-white hover:bg-slate-800"
             onClick={() => navigate('/agents')}
           >
-            View All Agents
+            View All Voice Agents
           </Button>
         </div>
       </div>

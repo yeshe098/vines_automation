@@ -10,7 +10,7 @@ import { Textarea } from '@/components/ui/textarea';
 import { Label } from '@/components/ui/label';
 import { Header } from '@/components/Header';
 import { Footer } from '@/components/Footer';
-import { Star, Clock, Globe, Play, MessageCircle, Shield } from 'lucide-react';
+import { Star, Clock, Globe, Play, MessageCircle, Shield, Phone } from 'lucide-react';
 import { useToast } from '@/hooks/use-toast';
 
 interface VoiceAgent {
@@ -27,7 +27,6 @@ interface VoiceAgent {
   review_count: number;
   is_online: boolean;
   avatar_url?: string;
-  seller_id: string;
 }
 
 interface Review {
@@ -51,6 +50,7 @@ const AgentDetail = () => {
   const [loading, setLoading] = useState(true);
   const [requirements, setRequirements] = useState('');
   const [ordering, setOrdering] = useState(false);
+  const [isTrying, setIsTrying] = useState(false);
 
   useEffect(() => {
     if (id) {
@@ -96,7 +96,19 @@ const AgentDetail = () => {
     }
   };
 
-  const handleOrder = async () => {
+  const handleTryMe = () => {
+    setIsTrying(true);
+    // Simulate a demo call
+    setTimeout(() => {
+      setIsTrying(false);
+      toast({
+        title: "Demo completed!",
+        description: "You've experienced a sample of this voice agent. Ready to purchase?",
+      });
+    }, 3000);
+  };
+
+  const handlePurchase = async () => {
     if (!user) {
       navigate('/auth');
       return;
@@ -118,15 +130,15 @@ const AgentDetail = () => {
       if (error) throw error;
 
       toast({
-        title: "Order placed successfully!",
-        description: "The seller will contact you soon to discuss your requirements.",
+        title: "Purchase successful!",
+        description: "Your voice agent is now ready to use. Check your dashboard for setup instructions.",
       });
 
       navigate('/dashboard');
     } catch (error) {
       console.error('Error creating order:', error);
       toast({
-        title: "Error placing order",
+        title: "Error processing purchase",
         description: "Please try again later.",
         variant: "destructive",
       });
@@ -187,7 +199,7 @@ const AgentDetail = () => {
                       {agent.is_online && (
                         <div className="flex items-center space-x-1">
                           <div className="w-2 h-2 bg-green-400 rounded-full"></div>
-                          <span className="text-green-400 text-sm">Online</span>
+                          <span className="text-green-400 text-sm">Available</span>
                         </div>
                       )}
                     </div>
@@ -203,7 +215,7 @@ const AgentDetail = () => {
               
               <CardContent className="space-y-6">
                 <div>
-                  <h3 className="text-white font-semibold mb-2">About</h3>
+                  <h3 className="text-white font-semibold mb-2">About This Voice Agent</h3>
                   <p className="text-slate-300">{agent.description}</p>
                 </div>
 
@@ -218,21 +230,21 @@ const AgentDetail = () => {
                   <div className="flex items-center space-x-2">
                     <Clock className="w-5 h-5 text-blue-400" />
                     <div>
-                      <div className="text-white font-semibold">{agent.delivery_time} hours</div>
-                      <div className="text-slate-400 text-sm">Delivery time</div>
+                      <div className="text-white font-semibold">Instant</div>
+                      <div className="text-slate-400 text-sm">Setup time</div>
                     </div>
                   </div>
                   <div className="flex items-center space-x-2">
                     <Shield className="w-5 h-5 text-green-400" />
                     <div>
-                      <div className="text-white font-semibold">Verified</div>
-                      <div className="text-slate-400 text-sm">Professional</div>
+                      <div className="text-white font-semibold">Reliable</div>
+                      <div className="text-slate-400 text-sm">24/7 Service</div>
                     </div>
                   </div>
                 </div>
 
                 <div>
-                  <h3 className="text-white font-semibold mb-3">Languages</h3>
+                  <h3 className="text-white font-semibold mb-3">Supported Languages</h3>
                   <div className="flex flex-wrap gap-2">
                     {agent.languages.map((lang, index) => (
                       <Badge key={index} variant="outline" className="border-slate-600 text-slate-300">
@@ -244,7 +256,7 @@ const AgentDetail = () => {
                 </div>
 
                 <div>
-                  <h3 className="text-white font-semibold mb-3">Specialties</h3>
+                  <h3 className="text-white font-semibold mb-3">Key Features</h3>
                   <div className="flex flex-wrap gap-2">
                     {agent.specialties.map((specialty, index) => (
                       <Badge key={index} variant="outline" className="border-slate-600 text-slate-300">
@@ -254,13 +266,20 @@ const AgentDetail = () => {
                   </div>
                 </div>
 
-                <div>
+                {/* Try Me Section */}
+                <div className="bg-slate-700 rounded-lg p-4">
+                  <h3 className="text-white font-semibold mb-3">Try Before You Buy</h3>
+                  <p className="text-slate-300 text-sm mb-4">
+                    Experience a sample conversation with this voice agent to see how it works.
+                  </p>
                   <Button 
                     variant="outline" 
-                    className="border-slate-600 text-slate-300 hover:bg-slate-700"
+                    className="w-full border-slate-600 text-slate-300 hover:bg-slate-600"
+                    onClick={handleTryMe}
+                    disabled={isTrying}
                   >
-                    <Play className="w-4 h-4 mr-2" />
-                    Play Sample
+                    <Phone className="w-4 h-4 mr-2" />
+                    {isTrying ? 'Demo in Progress...' : 'Try Me - Free Demo'}
                   </Button>
                 </div>
               </CardContent>
@@ -269,7 +288,7 @@ const AgentDetail = () => {
             {/* Reviews */}
             <Card className="bg-slate-800 border-slate-700">
               <CardHeader>
-                <CardTitle className="text-white">Reviews ({reviews.length})</CardTitle>
+                <CardTitle className="text-white">Customer Reviews ({reviews.length})</CardTitle>
               </CardHeader>
               <CardContent className="space-y-4">
                 {reviews.map((review) => (
@@ -286,7 +305,7 @@ const AgentDetail = () => {
                         ))}
                       </div>
                       <span className="text-slate-300 font-medium">
-                        {review.profiles?.full_name || 'Anonymous'}
+                        {review.profiles?.full_name || 'Anonymous Customer'}
                       </span>
                       <span className="text-slate-500 text-sm">
                         {new Date(review.created_at).toLocaleDateString()}
@@ -298,44 +317,45 @@ const AgentDetail = () => {
                   </div>
                 ))}
                 {reviews.length === 0 && (
-                  <p className="text-slate-400">No reviews yet</p>
+                  <p className="text-slate-400">No reviews yet - be the first to try this agent!</p>
                 )}
               </CardContent>
             </Card>
           </div>
 
-          {/* Order Form */}
+          {/* Purchase Section */}
           <div className="space-y-6">
             <Card className="bg-slate-800 border-slate-700 sticky top-4">
               <CardHeader>
                 <div className="text-center">
                   <div className="text-3xl font-bold text-white mb-2">${agent.price}</div>
-                  <p className="text-slate-400">One-time service</p>
+                  <p className="text-slate-400">One-time purchase</p>
+                  <p className="text-slate-500 text-sm">Lifetime access</p>
                 </div>
               </CardHeader>
               
               <CardContent className="space-y-4">
                 <div>
                   <Label htmlFor="requirements" className="text-white">
-                    Project Requirements (Optional)
+                    Special Requirements (Optional)
                   </Label>
                   <Textarea
                     id="requirements"
-                    placeholder="Describe your project requirements, tone, style, etc."
+                    placeholder="Any specific customizations or requirements for your use case..."
                     value={requirements}
                     onChange={(e) => setRequirements(e.target.value)}
                     className="bg-slate-700 border-slate-600 text-white mt-2"
-                    rows={4}
+                    rows={3}
                   />
                 </div>
 
-                <div className="space-y-2">
+                <div className="space-y-3">
                   <Button 
-                    className="w-full bg-gradient-to-r from-blue-600 to-purple-600 hover:from-blue-700 hover:to-purple-700"
-                    onClick={handleOrder}
+                    className="w-full bg-gradient-to-r from-blue-600 to-purple-600 hover:from-blue-700 hover:to-purple-700 text-lg py-3"
+                    onClick={handlePurchase}
                     disabled={ordering}
                   >
-                    {ordering ? 'Placing Order...' : 'Order Now'}
+                    {ordering ? 'Processing...' : 'Buy Now to Use'}
                   </Button>
                   
                   <Button 
@@ -343,14 +363,15 @@ const AgentDetail = () => {
                     className="w-full border-slate-600 text-slate-300 hover:bg-slate-700"
                   >
                     <MessageCircle className="w-4 h-4 mr-2" />
-                    Contact First
+                    Contact Support
                   </Button>
                 </div>
 
-                <div className="text-center text-slate-400 text-sm">
-                  <p>💰 Money-back guarantee</p>
-                  <p>⚡ Fast delivery in {agent.delivery_time} hours</p>
+                <div className="text-center text-slate-400 text-sm space-y-1">
+                  <p>✅ Instant activation</p>
                   <p>🔒 Secure payment</p>
+                  <p>💬 24/7 support included</p>
+                  <p>🔄 30-day money-back guarantee</p>
                 </div>
               </CardContent>
             </Card>
