@@ -71,8 +71,8 @@ const Dashboard = () => {
 
     try {
       // Fetch user profile
-      const { data: profileData } = await supabase
-        .from('profiles' as any)
+      const { data: profileData } = await (supabase as any)
+        .from('profiles')
         .select('*')
         .eq('id', user.id)
         .single();
@@ -82,8 +82,8 @@ const Dashboard = () => {
       }
 
       // Fetch orders (as buyer)
-      const { data: ordersData } = await supabase
-        .from('orders' as any)
+      const { data: ordersData } = await (supabase as any)
+        .from('orders')
         .select(`
           *,
           voice_agents (name, title, delivery_time)
@@ -95,15 +95,15 @@ const Dashboard = () => {
 
       // If user is a seller, fetch their agent stats
       if (profileData?.is_seller) {
-        const { data: agentsData } = await supabase
-          .from('voice_agents' as any)
+        const { data: agentsData } = await (supabase as any)
+          .from('voice_agents')
           .select('*')
           .eq('seller_id', user.id);
 
         if (agentsData) {
           const statsPromises = agentsData.map(async (agent: any) => {
-            const { data: ordersData } = await supabase
-              .from('orders' as any)
+            const { data: ordersData } = await (supabase as any)
+              .from('orders')
               .select('amount')
               .eq('agent_id', agent.id);
 
