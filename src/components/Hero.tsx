@@ -1,8 +1,11 @@
 
 import { Button } from "@/components/ui/button";
 import { Play, Star, Users, Zap } from "lucide-react";
+import { useNavigate } from "react-router-dom";
 
 export const Hero = () => {
+  const navigate = useNavigate();
+
   return (
     <section className="relative py-20 px-4 overflow-hidden">
       <div className="absolute inset-0 bg-gradient-to-r from-blue-600/20 to-purple-600/20 animate-pulse"></div>
@@ -19,11 +22,20 @@ export const Hero = () => {
           </p>
           
           <div className="flex flex-col sm:flex-row gap-4 justify-center mb-12">
-            <Button size="lg" className="bg-gradient-to-r from-blue-600 to-purple-600 hover:from-blue-700 hover:to-purple-700 text-white px-8 py-4 text-lg">
+            <Button 
+              size="lg" 
+              className="bg-gradient-to-r from-blue-600 to-purple-600 hover:from-blue-700 hover:to-purple-700 text-white px-8 py-4 text-lg"
+              onClick={() => navigate('/agents')}
+            >
               <Play className="w-5 h-5 mr-2" />
               Browse Voice Agents
             </Button>
-            <Button size="lg" variant="outline" className="border-slate-600 text-white hover:bg-slate-800 px-8 py-4 text-lg">
+            <Button 
+              size="lg" 
+              variant="outline" 
+              className="border-slate-600 text-white hover:bg-slate-800 px-8 py-4 text-lg"
+              onClick={() => navigate('/auth')}
+            >
               Start Selling Today
             </Button>
           </div>
