@@ -32,7 +32,7 @@ export const FeaturedAgents = () => {
   const fetchFeaturedAgents = async () => {
     try {
       const { data, error } = await supabase
-        .from('voice_agents')
+        .from('voice_agents' as any)
         .select('*')
         .eq('is_active', true)
         .order('rating', { ascending: false })

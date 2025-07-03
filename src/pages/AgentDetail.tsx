@@ -62,7 +62,7 @@ const AgentDetail = () => {
   const fetchAgentDetails = async () => {
     try {
       const { data, error } = await supabase
-        .from('voice_agents')
+        .from('voice_agents' as any)
         .select('*')
         .eq('id', id)
         .single();
@@ -80,7 +80,7 @@ const AgentDetail = () => {
   const fetchReviews = async () => {
     try {
       const { data, error } = await supabase
-        .from('reviews')
+        .from('reviews' as any)
         .select(`
           *,
           profiles:reviewer_id (full_name)
@@ -107,7 +107,7 @@ const AgentDetail = () => {
     setOrdering(true);
     try {
       const { error } = await supabase
-        .from('orders')
+        .from('orders' as any)
         .insert({
           buyer_id: user.id,
           agent_id: agent.id,

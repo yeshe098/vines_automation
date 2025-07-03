@@ -47,7 +47,7 @@ const Agents = () => {
   const fetchAgents = async () => {
     try {
       const { data, error } = await supabase
-        .from('voice_agents')
+        .from('voice_agents' as any)
         .select('*')
         .eq('is_active', true);
 

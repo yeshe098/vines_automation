@@ -44,12 +44,18 @@ interface AgentStats {
   total_earnings: number;
 }
 
+interface Profile {
+  id: string;
+  full_name: string;
+  is_seller: boolean;
+}
+
 const Dashboard = () => {
   const { user, loading } = useAuth();
   const navigate = useNavigate();
   const [orders, setOrders] = useState<Order[]>([]);
   const [agentStats, setAgentStats] = useState<AgentStats[]>([]);
-  const [profile, setProfile] = useState<any>(null);
+  const [profile, setProfile] = useState<Profile | null>(null);
   const [dashboardLoading, setDashboardLoading] = useState(true);
 
   useEffect(() => {
@@ -66,16 +72,18 @@ const Dashboard = () => {
     try {
       // Fetch user profile
       const { data: profileData } = await supabase
-        .from('profiles')
+        .from('profiles' as any)
         .select('*')
         .eq('id', user.id)
         .single();
       
-      setProfile(profileData);
+      if (profileData) {
+        setProfile(profileData);
+      }
 
       // Fetch orders (as buyer)
       const { data: ordersData } = await supabase
-        .from('orders')
+        .from('orders' as any)
         .select(`
           *,
           voice_agents (name, title, delivery_time)
@@ -88,19 +96,19 @@ const Dashboard = () => {
       // If user is a seller, fetch their agent stats
       if (profileData?.is_seller) {
         const { data: agentsData } = await supabase
-          .from('voice_agents')
+          .from('voice_agents' as any)
           .select('*')
           .eq('seller_id', user.id);
 
         if (agentsData) {
-          const statsPromises = agentsData.map(async (agent) => {
+          const statsPromises = agentsData.map(async (agent: any) => {
             const { data: ordersData } = await supabase
-              .from('orders')
+              .from('orders' as any)
               .select('amount')
               .eq('agent_id', agent.id);
 
             const ordersCount = ordersData?.length || 0;
-            const totalEarnings = ordersData?.reduce((sum, order) => sum + Number(order.amount), 0) || 0;
+            const totalEarnings = ordersData?.reduce((sum: number, order: any) => sum + Number(order.amount), 0) || 0;
 
             return {
               ...agent,
