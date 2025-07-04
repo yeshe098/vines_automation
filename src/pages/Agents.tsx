@@ -6,7 +6,7 @@ import { Button } from '@/components/ui/button';
 import { Input } from '@/components/ui/input';
 import { Select, SelectContent, SelectItem, SelectTrigger, SelectValue } from '@/components/ui/select';
 import { Badge } from '@/components/ui/badge';
-import { Search, Star, Clock, Globe, Play, Phone } from 'lucide-react';
+import { Search, Star, Globe, Play, Phone } from 'lucide-react';
 import { Header } from '@/components/Header';
 import { Footer } from '@/components/Footer';
 import { useNavigate } from 'react-router-dom';
@@ -49,7 +49,8 @@ const Agents = () => {
       const { data, error } = await (supabase as any)
         .from('voice_agents')
         .select('*')
-        .eq('is_active', true);
+        .eq('is_active', true)
+        .not('name', 'ilike', '%maintenance%');
 
       if (error) throw error;
       setAgents(data || []);
@@ -114,7 +115,7 @@ const Agents = () => {
       <div className="container mx-auto px-4 py-8">
         <div className="mb-8">
           <h1 className="text-4xl font-bold text-white mb-4">AI Voice Agents</h1>
-          <p className="text-slate-300 text-lg">Choose the perfect AI voice agent for your business needs</p>
+          <p className="text-slate-200 text-lg">Choose the perfect AI voice agent for your business needs</p>
         </div>
 
         {/* Search and Filters */}
@@ -125,15 +126,15 @@ const Agents = () => {
               placeholder="Search voice agents..."
               value={searchTerm}
               onChange={(e) => setSearchTerm(e.target.value)}
-              className="pl-10 bg-slate-800 border-slate-700 text-white"
+              className="pl-10 bg-slate-800/90 border-slate-600 text-white placeholder:text-slate-300"
             />
           </div>
           
           <Select value={categoryFilter} onValueChange={setCategoryFilter}>
-            <SelectTrigger className="w-full md:w-48 bg-slate-800 border-slate-700 text-white">
+            <SelectTrigger className="w-full md:w-48 bg-slate-800/90 border-slate-600 text-white">
               <SelectValue placeholder="Category" />
             </SelectTrigger>
-            <SelectContent className="bg-slate-800 border-slate-700">
+            <SelectContent className="bg-slate-800 border-slate-600 text-white">
               <SelectItem value="all">All Categories</SelectItem>
               <SelectItem value="customer_service">Customer Service</SelectItem>
               <SelectItem value="virtual_assistant">Virtual Assistant</SelectItem>
@@ -143,10 +144,10 @@ const Agents = () => {
           </Select>
 
           <Select value={sortBy} onValueChange={setSortBy}>
-            <SelectTrigger className="w-full md:w-48 bg-slate-800 border-slate-700 text-white">
+            <SelectTrigger className="w-full md:w-48 bg-slate-800/90 border-slate-600 text-white">
               <SelectValue placeholder="Sort by" />
             </SelectTrigger>
-            <SelectContent className="bg-slate-800 border-slate-700">
+            <SelectContent className="bg-slate-800 border-slate-600 text-white">
               <SelectItem value="rating">Highest Rated</SelectItem>
               <SelectItem value="price_low">Price: Low to High</SelectItem>
               <SelectItem value="price_high">Price: High to Low</SelectItem>
@@ -158,7 +159,7 @@ const Agents = () => {
         {/* Agents Grid */}
         <div className="grid grid-cols-1 md:grid-cols-2 lg:grid-cols-3 gap-6">
           {filteredAgents.map((agent) => (
-            <Card key={agent.id} className="bg-slate-800 border-slate-700 hover:bg-slate-750 transition-colors">
+            <Card key={agent.id} className="bg-slate-800/90 border-slate-600 hover:bg-slate-700/90 transition-colors">
               <CardHeader>
                 <div className="flex items-start justify-between">
                   <div className="flex items-center space-x-3">
@@ -173,27 +174,27 @@ const Agents = () => {
                         {agent.is_online && (
                           <div className="w-2 h-2 bg-green-400 rounded-full"></div>
                         )}
-                        <span className="text-slate-400 text-sm">
+                        <span className="text-slate-200 text-sm">
                           {agent.is_online ? 'Available' : 'Offline'}
                         </span>
                       </div>
                     </div>
                   </div>
-                  <Badge variant="secondary" className="bg-slate-700 text-slate-300">
+                  <Badge variant="secondary" className="bg-slate-700 text-slate-200">
                     {formatCategory(agent.category)}
                   </Badge>
                 </div>
-                <CardDescription className="text-slate-300">
+                <CardDescription className="text-slate-200">
                   {agent.title}
                 </CardDescription>
               </CardHeader>
               
               <CardContent className="space-y-4">
-                <p className="text-slate-300 text-sm line-clamp-3">{agent.description}</p>
+                <p className="text-slate-200 text-sm line-clamp-3">{agent.description}</p>
                 
                 <div className="flex flex-wrap gap-2">
                   {agent.languages.slice(0, 3).map((lang, index) => (
-                    <Badge key={index} variant="outline" className="text-xs border-slate-600 text-slate-300">
+                    <Badge key={index} variant="outline" className="text-xs border-slate-500 text-slate-200">
                       <Globe className="w-3 h-3 mr-1" />
                       {lang}
                     </Badge>
@@ -202,7 +203,7 @@ const Agents = () => {
 
                 <div className="flex flex-wrap gap-2">
                   {agent.specialties.slice(0, 2).map((specialty, index) => (
-                    <Badge key={index} variant="outline" className="text-xs border-slate-600 text-slate-300">
+                    <Badge key={index} variant="outline" className="text-xs border-slate-500 text-slate-200">
                       {specialty}
                     </Badge>
                   ))}
@@ -213,9 +214,9 @@ const Agents = () => {
                     <div className="flex items-center space-x-1">
                       <Star className="w-4 h-4 text-yellow-400 fill-current" />
                       <span className="text-white font-semibold">{agent.rating}</span>
-                      <span className="text-slate-400 text-sm">({agent.review_count})</span>
+                      <span className="text-slate-200 text-sm">({agent.review_count})</span>
                     </div>
-                    <div className="flex items-center space-x-1 text-slate-400">
+                    <div className="flex items-center space-x-1 text-slate-200">
                       <Phone className="w-4 h-4" />
                       <span className="text-sm">Ready</span>
                     </div>
@@ -229,7 +230,7 @@ const Agents = () => {
                   <Button 
                     variant="outline" 
                     size="sm" 
-                    className="flex-1 border-slate-600 text-slate-300 hover:bg-slate-700"
+                    className="flex-1 border-slate-500 text-slate-200 hover:bg-slate-600"
                   >
                     <Play className="w-4 h-4 mr-2" />
                     Try Me
@@ -248,8 +249,8 @@ const Agents = () => {
 
         {filteredAgents.length === 0 && (
           <div className="text-center py-12">
-            <div className="text-slate-400 text-xl mb-4">No voice agents found</div>
-            <p className="text-slate-500">Try adjusting your search criteria</p>
+            <div className="text-slate-200 text-xl mb-4">No voice agents found</div>
+            <p className="text-slate-300">Try adjusting your search criteria</p>
           </div>
         )}
       </div>

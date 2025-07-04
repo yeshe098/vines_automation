@@ -2,7 +2,7 @@
 import { Card, CardContent, CardDescription, CardHeader, CardTitle } from "@/components/ui/card";
 import { Button } from "@/components/ui/button";
 import { Badge } from "@/components/ui/badge";
-import { Star, Clock, Globe, Play, Phone } from "lucide-react";
+import { Star, Globe, Play, Phone } from "lucide-react";
 import { useNavigate } from "react-router-dom";
 import { useState, useEffect } from "react";
 import { supabase } from "@/integrations/supabase/client";
@@ -35,6 +35,7 @@ export const FeaturedAgents = () => {
         .from('voice_agents')
         .select('*')
         .eq('is_active', true)
+        .not('name', 'ilike', '%maintenance%')
         .order('rating', { ascending: false })
         .limit(3);
 
@@ -56,14 +57,14 @@ export const FeaturedAgents = () => {
       <div className="container mx-auto">
         <div className="text-center mb-12">
           <h2 className="text-4xl font-bold text-white mb-4">Our AI Voice Agents</h2>
-          <p className="text-slate-300 text-lg max-w-2xl mx-auto">
-            Professional AI voice agents designed for your business needs. From customer service to appointment booking - we've got you covered.
+          <p className="text-slate-200 text-lg max-w-2xl mx-auto">
+            Professional AI voice agents designed for your business needs. From customer service to voice selling - we've got you covered.
           </p>
         </div>
         
         <div className="grid grid-cols-1 md:grid-cols-3 gap-8 mb-12">
           {agents.map((agent) => (
-            <Card key={agent.id} className="bg-slate-800 border-slate-700 hover:bg-slate-750 transition-colors">
+            <Card key={agent.id} className="bg-slate-800/90 border-slate-600 hover:bg-slate-700/90 transition-colors">
               <CardHeader>
                 <div className="flex items-start justify-between">
                   <div className="flex items-center space-x-3">
@@ -78,27 +79,27 @@ export const FeaturedAgents = () => {
                         {agent.is_online && (
                           <div className="w-2 h-2 bg-green-400 rounded-full"></div>
                         )}
-                        <span className="text-slate-400 text-sm">
+                        <span className="text-slate-200 text-sm">
                           {agent.is_online ? 'Available' : 'Offline'}
                         </span>
                       </div>
                     </div>
                   </div>
-                  <Badge variant="secondary" className="bg-slate-700 text-slate-300">
+                  <Badge variant="secondary" className="bg-slate-700 text-slate-200">
                     {formatCategory(agent.category)}
                   </Badge>
                 </div>
-                <CardDescription className="text-slate-300">
+                <CardDescription className="text-slate-200">
                   {agent.title}
                 </CardDescription>
               </CardHeader>
               
               <CardContent className="space-y-4">
-                <p className="text-slate-300 text-sm line-clamp-2">{agent.description}</p>
+                <p className="text-slate-200 text-sm line-clamp-2">{agent.description}</p>
                 
                 <div className="flex flex-wrap gap-2">
                   {agent.languages.slice(0, 2).map((lang, index) => (
-                    <Badge key={index} variant="outline" className="text-xs border-slate-600 text-slate-300">
+                    <Badge key={index} variant="outline" className="text-xs border-slate-500 text-slate-200">
                       <Globe className="w-3 h-3 mr-1" />
                       {lang}
                     </Badge>
@@ -110,9 +111,9 @@ export const FeaturedAgents = () => {
                     <div className="flex items-center space-x-1">
                       <Star className="w-4 h-4 text-yellow-400 fill-current" />
                       <span className="text-white font-semibold">{agent.rating}</span>
-                      <span className="text-slate-400 text-sm">({agent.review_count})</span>
+                      <span className="text-slate-200 text-sm">({agent.review_count})</span>
                     </div>
-                    <div className="flex items-center space-x-1 text-slate-400">
+                    <div className="flex items-center space-x-1 text-slate-200">
                       <Phone className="w-4 h-4" />
                       <span className="text-sm">Ready</span>
                     </div>
@@ -126,7 +127,7 @@ export const FeaturedAgents = () => {
                   <Button 
                     variant="outline" 
                     size="sm" 
-                    className="flex-1 border-slate-600 text-slate-300 hover:bg-slate-700"
+                    className="flex-1 border-slate-500 text-slate-200 hover:bg-slate-600"
                   >
                     <Play className="w-4 h-4 mr-2" />
                     Try Me
@@ -147,7 +148,7 @@ export const FeaturedAgents = () => {
           <Button 
             size="lg" 
             variant="outline" 
-            className="border-slate-600 text-white hover:bg-slate-800"
+            className="border-slate-500 text-white hover:bg-slate-700"
             onClick={() => navigate('/agents')}
           >
             View All Voice Agents

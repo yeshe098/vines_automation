@@ -10,7 +10,7 @@ import { Textarea } from '@/components/ui/textarea';
 import { Label } from '@/components/ui/label';
 import { Header } from '@/components/Header';
 import { Footer } from '@/components/Footer';
-import { Star, Clock, Globe, Play, MessageCircle, Shield, Phone } from 'lucide-react';
+import { Star, Globe, MessageCircle, Shield, Phone } from 'lucide-react';
 import { useToast } from '@/hooks/use-toast';
 
 interface VoiceAgent {
@@ -98,7 +98,6 @@ const AgentDetail = () => {
 
   const handleTryMe = () => {
     setIsTrying(true);
-    // Simulate a demo call
     setTimeout(() => {
       setIsTrying(false);
       toast({
@@ -185,7 +184,7 @@ const AgentDetail = () => {
         <div className="grid grid-cols-1 lg:grid-cols-3 gap-8">
           {/* Agent Details */}
           <div className="lg:col-span-2 space-y-6">
-            <Card className="bg-slate-800 border-slate-700">
+            <Card className="bg-slate-800/90 border-slate-600">
               <CardHeader>
                 <div className="flex items-start space-x-4">
                   <div className="w-16 h-16 bg-gradient-to-r from-blue-500 to-purple-600 rounded-full flex items-center justify-center">
@@ -203,10 +202,10 @@ const AgentDetail = () => {
                         </div>
                       )}
                     </div>
-                    <CardDescription className="text-slate-300 text-lg">
+                    <CardDescription className="text-slate-200 text-lg">
                       {agent.title}
                     </CardDescription>
-                    <Badge variant="secondary" className="bg-slate-700 text-slate-300 mt-2">
+                    <Badge variant="secondary" className="bg-slate-700 text-slate-200 mt-2">
                       {formatCategory(agent.category)}
                     </Badge>
                   </div>
@@ -216,7 +215,7 @@ const AgentDetail = () => {
               <CardContent className="space-y-6">
                 <div>
                   <h3 className="text-white font-semibold mb-2">About This Voice Agent</h3>
-                  <p className="text-slate-300">{agent.description}</p>
+                  <p className="text-slate-200">{agent.description}</p>
                 </div>
 
                 <div className="grid grid-cols-1 md:grid-cols-3 gap-4">
@@ -224,21 +223,21 @@ const AgentDetail = () => {
                     <Star className="w-5 h-5 text-yellow-400 fill-current" />
                     <div>
                       <div className="text-white font-semibold">{agent.rating}/5</div>
-                      <div className="text-slate-400 text-sm">{agent.review_count} reviews</div>
+                      <div className="text-slate-200 text-sm">{agent.review_count} reviews</div>
                     </div>
                   </div>
                   <div className="flex items-center space-x-2">
-                    <Clock className="w-5 h-5 text-blue-400" />
+                    <Shield className="w-5 h-5 text-green-400" />
                     <div>
                       <div className="text-white font-semibold">Instant</div>
-                      <div className="text-slate-400 text-sm">Setup time</div>
+                      <div className="text-slate-200 text-sm">Setup time</div>
                     </div>
                   </div>
                   <div className="flex items-center space-x-2">
                     <Shield className="w-5 h-5 text-green-400" />
                     <div>
                       <div className="text-white font-semibold">Reliable</div>
-                      <div className="text-slate-400 text-sm">24/7 Service</div>
+                      <div className="text-slate-200 text-sm">24/7 Service</div>
                     </div>
                   </div>
                 </div>
@@ -247,7 +246,7 @@ const AgentDetail = () => {
                   <h3 className="text-white font-semibold mb-3">Supported Languages</h3>
                   <div className="flex flex-wrap gap-2">
                     {agent.languages.map((lang, index) => (
-                      <Badge key={index} variant="outline" className="border-slate-600 text-slate-300">
+                      <Badge key={index} variant="outline" className="border-slate-500 text-slate-200">
                         <Globe className="w-3 h-3 mr-1" />
                         {lang}
                       </Badge>
@@ -259,7 +258,7 @@ const AgentDetail = () => {
                   <h3 className="text-white font-semibold mb-3">Key Features</h3>
                   <div className="flex flex-wrap gap-2">
                     {agent.specialties.map((specialty, index) => (
-                      <Badge key={index} variant="outline" className="border-slate-600 text-slate-300">
+                      <Badge key={index} variant="outline" className="border-slate-500 text-slate-200">
                         {specialty}
                       </Badge>
                     ))}
@@ -267,14 +266,14 @@ const AgentDetail = () => {
                 </div>
 
                 {/* Try Me Section */}
-                <div className="bg-slate-700 rounded-lg p-4">
+                <div className="bg-slate-700/90 rounded-lg p-4">
                   <h3 className="text-white font-semibold mb-3">Try Before You Buy</h3>
-                  <p className="text-slate-300 text-sm mb-4">
+                  <p className="text-slate-200 text-sm mb-4">
                     Experience a sample conversation with this voice agent to see how it works.
                   </p>
                   <Button 
                     variant="outline" 
-                    className="w-full border-slate-600 text-slate-300 hover:bg-slate-600"
+                    className="w-full border-slate-500 text-slate-200 hover:bg-slate-600"
                     onClick={handleTryMe}
                     disabled={isTrying}
                   >
@@ -286,38 +285,38 @@ const AgentDetail = () => {
             </Card>
 
             {/* Reviews */}
-            <Card className="bg-slate-800 border-slate-700">
+            <Card className="bg-slate-800/90 border-slate-600">
               <CardHeader>
                 <CardTitle className="text-white">Customer Reviews ({reviews.length})</CardTitle>
               </CardHeader>
               <CardContent className="space-y-4">
                 {reviews.map((review) => (
-                  <div key={review.id} className="border-b border-slate-700 pb-4 last:border-b-0">
+                  <div key={review.id} className="border-b border-slate-600 pb-4 last:border-b-0">
                     <div className="flex items-center space-x-2 mb-2">
                       <div className="flex">
                         {Array.from({ length: 5 }).map((_, i) => (
                           <Star
                             key={i}
                             className={`w-4 h-4 ${
-                              i < review.rating ? 'text-yellow-400 fill-current' : 'text-slate-600'
+                              i < review.rating ? 'text-yellow-400 fill-current' : 'text-slate-500'
                             }`}
                           />
                         ))}
                       </div>
-                      <span className="text-slate-300 font-medium">
+                      <span className="text-slate-200 font-medium">
                         {review.profiles?.full_name || 'Anonymous Customer'}
                       </span>
-                      <span className="text-slate-500 text-sm">
+                      <span className="text-slate-300 text-sm">
                         {new Date(review.created_at).toLocaleDateString()}
                       </span>
                     </div>
                     {review.comment && (
-                      <p className="text-slate-300 text-sm">{review.comment}</p>
+                      <p className="text-slate-200 text-sm">{review.comment}</p>
                     )}
                   </div>
                 ))}
                 {reviews.length === 0 && (
-                  <p className="text-slate-400">No reviews yet - be the first to try this agent!</p>
+                  <p className="text-slate-300">No reviews yet - be the first to try this agent!</p>
                 )}
               </CardContent>
             </Card>
@@ -325,12 +324,12 @@ const AgentDetail = () => {
 
           {/* Purchase Section */}
           <div className="space-y-6">
-            <Card className="bg-slate-800 border-slate-700 sticky top-4">
+            <Card className="bg-slate-800/90 border-slate-600 sticky top-4">
               <CardHeader>
                 <div className="text-center">
                   <div className="text-3xl font-bold text-white mb-2">${agent.price}</div>
-                  <p className="text-slate-400">One-time purchase</p>
-                  <p className="text-slate-500 text-sm">Lifetime access</p>
+                  <p className="text-slate-200">One-time purchase</p>
+                  <p className="text-slate-300 text-sm">Lifetime access</p>
                 </div>
               </CardHeader>
               
@@ -344,7 +343,7 @@ const AgentDetail = () => {
                     placeholder="Any specific customizations or requirements for your use case..."
                     value={requirements}
                     onChange={(e) => setRequirements(e.target.value)}
-                    className="bg-slate-700 border-slate-600 text-white mt-2"
+                    className="bg-slate-700/90 border-slate-500 text-white placeholder:text-slate-300 mt-2"
                     rows={3}
                   />
                 </div>
@@ -360,14 +359,14 @@ const AgentDetail = () => {
                   
                   <Button 
                     variant="outline" 
-                    className="w-full border-slate-600 text-slate-300 hover:bg-slate-700"
+                    className="w-full border-slate-500 text-slate-200 hover:bg-slate-600"
                   >
                     <MessageCircle className="w-4 h-4 mr-2" />
                     Contact Support
                   </Button>
                 </div>
 
-                <div className="text-center text-slate-400 text-sm space-y-1">
+                <div className="text-center text-slate-200 text-sm space-y-1">
                   <p>✅ Instant activation</p>
                   <p>🔒 Secure payment</p>
                   <p>💬 24/7 support included</p>
