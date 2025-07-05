@@ -36,7 +36,7 @@ export const Header = () => {
               type="text"
               placeholder="Search voice agents..."
               className="w-full pl-10 pr-4 py-2 bg-slate-800 border border-slate-700 rounded-lg text-white placeholder-slate-400 focus:outline-none focus:ring-2 focus:ring-blue-500"
-              onFocus={() => navigate('/agents')}
+              onFocus={() => {}}
             />
           </div>
         </div>
@@ -47,13 +47,6 @@ export const Header = () => {
             <option value="nl">🇳🇱 Dutch</option>
           </select>
           
-          <Button 
-            variant="ghost" 
-            className="text-white hover:text-blue-400"
-            onClick={() => navigate('/agents')}
-          >
-            Browse Agents
-          </Button>
           
           {user ? (
             <DropdownMenu>

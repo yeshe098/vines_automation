@@ -7,8 +7,6 @@ import { BrowserRouter, Routes, Route } from "react-router-dom";
 import { AuthProvider } from "@/contexts/AuthContext";
 import Index from "./pages/Index";
 import Auth from "./pages/Auth";
-import Agents from "./pages/Agents";
-import AgentDetail from "./pages/AgentDetail";
 import Dashboard from "./pages/Dashboard";
 import Quote from "./pages/Quote";
 import Personalized from "./pages/Personalized";
@@ -26,8 +24,6 @@ const App = () => (
           <Routes>
             <Route path="/" element={<Index />} />
             <Route path="/auth" element={<Auth />} />
-            <Route path="/agents" element={<Agents />} />
-            <Route path="/agent/:id" element={<AgentDetail />} />
             <Route path="/dashboard" element={<Dashboard />} />
             <Route path="/quote" element={<Quote />} />
             <Route path="/personalized" element={<Personalized />} />
