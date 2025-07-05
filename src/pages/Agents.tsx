@@ -50,7 +50,7 @@ const Agents = () => {
         .from('voice_agents')
         .select('*')
         .eq('is_active', true)
-        .not('name', 'ilike', '%maintenance%');
+        .in('name', ['English Assistant', 'Dutch Assistant']);
 
       if (error) throw error;
       setAgents(data || []);
@@ -114,8 +114,8 @@ const Agents = () => {
       
       <div className="container mx-auto px-4 py-8">
         <div className="mb-8">
-          <h1 className="text-4xl font-bold text-white mb-4">AI Voice Agents</h1>
-          <p className="text-slate-200 text-lg">Choose the perfect AI voice agent for your business needs</p>
+          <h1 className="text-4xl font-bold text-white mb-4">Browse Our AI Calling Agents</h1>  
+          <p className="text-slate-200 text-lg">Explore our specialized English and Dutch AI assistants</p>
         </div>
 
         {/* Search and Filters */}
@@ -222,24 +222,15 @@ const Agents = () => {
                     </div>
                   </div>
                   <div className="text-right">
-                    <div className="text-2xl font-bold text-white">${agent.price}</div>
+                    <div className="text-sm text-slate-400">Contact us for pricing</div>
                   </div>
                 </div>
 
                 <div className="flex space-x-2">
                   <Button 
-                    variant="outline" 
-                    size="sm" 
-                    className="flex-1 border-slate-500 text-slate-200 hover:bg-slate-600"
+                    className="flex-1 bg-gradient-to-r from-blue-600 to-blue-800 hover:from-blue-700 hover:to-blue-900"
                   >
-                    <Play className="w-4 h-4 mr-2" />
-                    Try Me
-                  </Button>
-                  <Button 
-                    className="flex-1 bg-gradient-to-r from-blue-600 to-purple-600 hover:from-blue-700 hover:to-purple-700"
-                    onClick={() => navigate(`/agent/${agent.id}`)}
-                  >
-                    Buy Now
+                    Try Now
                   </Button>
                 </div>
               </CardContent>

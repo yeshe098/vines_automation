@@ -10,6 +10,8 @@ import Auth from "./pages/Auth";
 import Agents from "./pages/Agents";
 import AgentDetail from "./pages/AgentDetail";
 import Dashboard from "./pages/Dashboard";
+import Quote from "./pages/Quote";
+import Personalized from "./pages/Personalized";
 import NotFound from "./pages/NotFound";
 
 const queryClient = new QueryClient();
@@ -27,6 +29,8 @@ const App = () => (
             <Route path="/agents" element={<Agents />} />
             <Route path="/agent/:id" element={<AgentDetail />} />
             <Route path="/dashboard" element={<Dashboard />} />
+            <Route path="/quote" element={<Quote />} />
+            <Route path="/personalized" element={<Personalized />} />
             {/* ADD ALL CUSTOM ROUTES ABOVE THE CATCH-ALL "*" ROUTE */}
             <Route path="*" element={<NotFound />} />
           </Routes>

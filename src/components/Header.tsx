@@ -23,10 +23,10 @@ export const Header = () => {
     <header className="bg-slate-900/80 backdrop-blur-md border-b border-slate-800 sticky top-0 z-50">
       <div className="container mx-auto px-4 py-4 flex items-center justify-between">
         <div className="flex items-center space-x-2 cursor-pointer" onClick={() => navigate('/')}>
-          <div className="w-8 h-8 bg-gradient-to-r from-blue-500 to-purple-600 rounded-lg flex items-center justify-center">
+          <div className="w-8 h-8 bg-gradient-to-r from-blue-800 to-blue-900 rounded-lg flex items-center justify-center">
             <Mic className="w-5 h-5 text-white" />
           </div>
-          <span className="text-xl font-bold text-white">VoiceBot Market</span>
+          <span className="text-xl font-bold text-white">Vines Calling Agents</span>
         </div>
         
         <div className="hidden md:flex items-center flex-1 max-w-md mx-8">
@@ -42,6 +42,11 @@ export const Header = () => {
         </div>
         
         <div className="flex items-center space-x-4">
+          <select className="bg-slate-800 border border-slate-600 text-white rounded px-3 py-1 text-sm">
+            <option value="en">🇬🇧 English</option>
+            <option value="nl">🇳🇱 Dutch</option>
+          </select>
+          
           <Button 
             variant="ghost" 
             className="text-white hover:text-blue-400"
@@ -76,14 +81,22 @@ export const Header = () => {
               </DropdownMenuContent>
             </DropdownMenu>
           ) : (
-            <Button 
-              variant="outline" 
-              className="border-slate-600 text-white hover:bg-slate-800"
-              onClick={() => navigate('/auth')}
-            >
-              <User className="w-4 h-4 mr-2" />
-              Sign In
-            </Button>
+            <>
+              <Button 
+                variant="outline" 
+                className="border-slate-600 text-white hover:bg-slate-800"
+                onClick={() => navigate('/auth')}
+              >
+                <User className="w-4 h-4 mr-2" />
+                Sign In
+              </Button>
+              <Button 
+                className="bg-gradient-to-r from-blue-600 to-blue-800 hover:from-blue-700 hover:to-blue-900 text-white"
+                onClick={() => navigate('/quote')}
+              >
+                📩 Ask for a Quote
+              </Button>
+            </>
           )}
         </div>
       </div>

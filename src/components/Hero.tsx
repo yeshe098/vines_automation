@@ -13,45 +13,66 @@ export const Hero = () => {
       <div className="container mx-auto text-center relative z-10">
         <div className="max-w-4xl mx-auto">
           <h1 className="text-5xl md:text-7xl font-bold text-white mb-6 leading-tight">
-            Find the Perfect
-            <span className="bg-gradient-to-r from-blue-400 to-purple-500 bg-clip-text text-transparent"> AI Voice Agent</span>
+            Find Your Perfect
+            <span className="bg-gradient-to-r from-blue-400 to-blue-600 bg-clip-text text-transparent"> AI Calling Agent</span>
           </h1>
           
-          <p className="text-xl text-slate-300 mb-8 max-w-2xl mx-auto">
-            Connect with professional AI voice agents for customer service, virtual assistants, audiobooks, and more. Quality voices, competitive prices, instant delivery.
+          <p className="text-xl text-slate-300 mb-8 max-w-3xl mx-auto">
+            Your AI-powered voice agent for customer service, cold calls, inbound and outbound communication, appointment scheduling, reminders, and more.
           </p>
           
           <div className="flex flex-col sm:flex-row gap-4 justify-center mb-12">
             <Button 
               size="lg" 
-              className="bg-gradient-to-r from-blue-600 to-purple-600 hover:from-blue-700 hover:to-purple-700 text-white px-8 py-4 text-lg"
-              onClick={() => navigate('/agents')}
+              className="bg-gradient-to-r from-blue-600 to-blue-800 hover:from-blue-700 hover:to-blue-900 text-white px-8 py-4 text-lg"
             >
-              <Play className="w-5 h-5 mr-2" />
-              Browse Voice Agents
+              🎙️ Talk to the Voice Agent Now
             </Button>
             <Button 
               size="lg" 
               variant="outline" 
               className="border-slate-600 text-white hover:bg-slate-800 px-8 py-4 text-lg"
-              onClick={() => navigate('/auth')}
+              onClick={() => navigate('/personalized')}
             >
-              Start Selling Today
+              🤖 Try Your Own Personalized Voice Agent
             </Button>
           </div>
           
-          <div className="grid grid-cols-1 md:grid-cols-3 gap-8 max-w-3xl mx-auto">
-            <div className="flex items-center justify-center space-x-2 text-slate-300">
-              <Users className="w-5 h-5 text-blue-400" />
-              <span>10,000+ Agents</span>
-            </div>
-            <div className="flex items-center justify-center space-x-2 text-slate-300">
-              <Star className="w-5 h-5 text-yellow-400" />
-              <span>4.9/5 Average Rating</span>
-            </div>
-            <div className="flex items-center justify-center space-x-2 text-slate-300">
-              <Zap className="w-5 h-5 text-green-400" />
-              <span>24/7 Instant Delivery</span>
+          <div className="mt-16">
+            <h2 className="text-3xl font-bold text-white mb-8">Why Use AI Calling Agents?</h2>
+            <div className="grid grid-cols-1 md:grid-cols-2 lg:grid-cols-4 gap-6 max-w-6xl mx-auto">
+              <div className="flex items-start space-x-3 text-left">
+                <div className="text-green-400 text-xl">✅</div>
+                <span className="text-slate-300">Handles both inbound and outbound calls</span>
+              </div>
+              <div className="flex items-start space-x-3 text-left">
+                <div className="text-green-400 text-xl">✅</div>
+                <span className="text-slate-300">No customer waiting times</span>
+              </div>
+              <div className="flex items-start space-x-3 text-left">
+                <div className="text-green-400 text-xl">✅</div>
+                <span className="text-slate-300">Schedules appointments directly into your calendar</span>
+              </div>
+              <div className="flex items-start space-x-3 text-left">
+                <div className="text-green-400 text-xl">✅</div>
+                <span className="text-slate-300">Provides 24/7 support for customers</span>
+              </div>
+              <div className="flex items-start space-x-3 text-left">
+                <div className="text-green-400 text-xl">✅</div>
+                <span className="text-slate-300">Sends reminders and follow-up calls</span>
+              </div>
+              <div className="flex items-start space-x-3 text-left">
+                <div className="text-green-400 text-xl">✅</div>
+                <span className="text-slate-300">Replaces large parts of your call center</span>
+              </div>
+              <div className="flex items-start space-x-3 text-left">
+                <div className="text-green-400 text-xl">✅</div>
+                <span className="text-slate-300">Cuts costs by up to 50%</span>
+              </div>
+              <div className="flex items-start space-x-3 text-left">
+                <div className="text-green-400 text-xl">✅</div>
+                <span className="text-slate-300">Supports multiple languages (English & Dutch)</span>
+              </div>
             </div>
           </div>
         </div>
