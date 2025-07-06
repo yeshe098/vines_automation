@@ -22,20 +22,16 @@ export const Header = () => {
   return (
     <header className="bg-slate-900/80 backdrop-blur-md border-b border-slate-800 sticky top-0 z-50">
       <div className="container mx-auto px-4 py-4 flex items-center justify-between">
-        <div className="flex items-center space-x-2 cursor-pointer" onClick={() => navigate('/')}>
-          <div className="w-8 h-8 bg-gradient-to-r from-blue-800 to-blue-900 rounded-lg flex items-center justify-center">
-            <Mic className="w-5 h-5 text-white" />
-          </div>
-          <span className="text-xl font-bold text-white">Vines Calling Agents</span>
+        <div className="flex items-center space-x-3 cursor-pointer" onClick={() => navigate('/')}>
+          <img 
+            src="/lovable-uploads/735ff7a4-de4c-4992-878f-ad89169a9780.png" 
+            alt="Vines Automations Logo" 
+            className="w-10 h-10"
+          />
+          <span className="text-xl font-bold text-white hidden sm:block">Vines Automations</span>
         </div>
         
         <nav className="hidden md:flex items-center space-x-8">
-          <button 
-            onClick={() => navigate('/features')}
-            className="text-slate-300 hover:text-white transition-colors"
-          >
-            What Our AI Agents Can Do
-          </button>
           <button 
             onClick={() => navigate('/pricing')}
             className="text-slate-300 hover:text-white transition-colors"
@@ -44,21 +40,22 @@ export const Header = () => {
           </button>
         </nav>
         
-        <div className="flex items-center space-x-4">
+        <div className="flex items-center space-x-2 md:space-x-4">
           <Button 
-            className="bg-gradient-to-r from-blue-600 to-blue-800 hover:from-blue-700 hover:to-blue-900 text-white"
+            className="bg-gradient-to-r from-blue-600 to-blue-800 hover:from-blue-700 hover:to-blue-900 text-white text-sm px-3 py-2 md:px-4 md:py-2"
             onClick={() => navigate('/quote')}
           >
-            📩 Ask for a Quote
+            <span className="hidden sm:inline">📩 Ask for a Quote</span>
+            <span className="sm:hidden">Quote</span>
           </Button>
           
           {user ? (
             <DropdownMenu>
               <DropdownMenuTrigger asChild>
-                <Button variant="outline" className="border-slate-600 text-white hover:bg-slate-800">
-                  <User className="w-4 h-4 mr-2" />
-                  Account
-                </Button>
+              <Button className="bg-slate-700 text-white hover:bg-slate-600 border-slate-600">
+                <User className="w-4 h-4 mr-2" />
+                <span className="hidden sm:inline">Account</span>
+              </Button>
               </DropdownMenuTrigger>
               <DropdownMenuContent className="bg-slate-800 border-slate-700">
                 <DropdownMenuItem 
@@ -79,12 +76,11 @@ export const Header = () => {
             </DropdownMenu>
           ) : (
             <Button 
-              variant="outline" 
-              className="border-slate-600 text-white hover:bg-slate-800"
+              className="bg-slate-700 text-white hover:bg-slate-600 border-slate-600"
               onClick={() => navigate('/auth')}
             >
               <User className="w-4 h-4 mr-2" />
-              Sign In
+              <span className="hidden sm:inline">Sign In</span>
             </Button>
           )}
           

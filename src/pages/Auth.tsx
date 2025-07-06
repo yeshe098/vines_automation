@@ -62,11 +62,13 @@ const Auth = () => {
     <div className="min-h-screen bg-gradient-to-br from-slate-900 via-purple-900 to-slate-900 flex items-center justify-center p-4">
       <Card className="w-full max-w-md bg-slate-800 border-slate-700">
         <CardHeader className="text-center">
-          <div className="flex items-center justify-center space-x-2 mb-4">
-            <div className="w-8 h-8 bg-gradient-to-r from-blue-500 to-purple-600 rounded-lg flex items-center justify-center">
-              <Mic className="w-5 h-5 text-white" />
-            </div>
-            <span className="text-xl font-bold text-white">VoiceBot Market</span>
+          <div className="flex items-center justify-center space-x-3 mb-4">
+            <img 
+              src="/lovable-uploads/735ff7a4-de4c-4992-878f-ad89169a9780.png" 
+              alt="Vines Automations Logo" 
+              className="w-12 h-12"
+            />
+            <span className="text-xl font-bold text-white">Vines Automations</span>
           </div>
           <CardTitle className="text-white">Welcome</CardTitle>
           <CardDescription className="text-slate-300">
@@ -106,7 +108,7 @@ const Auth = () => {
                 </div>
                 <Button 
                   type="submit" 
-                  className="w-full bg-gradient-to-r from-blue-600 to-purple-600 hover:from-blue-700 hover:to-purple-700"
+                  className="w-full bg-gradient-to-r from-blue-600 to-purple-600 hover:from-blue-700 hover:to-purple-700 text-white"
                   disabled={loading}
                 >
                   {loading ? 'Signing in...' : 'Sign In'}
@@ -151,7 +153,7 @@ const Auth = () => {
                 </div>
                 <Button 
                   type="submit" 
-                  className="w-full bg-gradient-to-r from-blue-600 to-purple-600 hover:from-blue-700 hover:to-purple-700"
+                  className="w-full bg-gradient-to-r from-blue-600 to-purple-600 hover:from-blue-700 hover:to-purple-700 text-white"
                   disabled={loading}
                 >
                   {loading ? 'Creating account...' : 'Sign Up'}
