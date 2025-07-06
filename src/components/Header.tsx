@@ -46,8 +46,7 @@ export const Header = () => {
             className="bg-gradient-to-r from-blue-600 to-blue-800 hover:from-blue-700 hover:to-blue-900 text-white text-xs sm:text-sm px-2 py-1.5 sm:px-3 sm:py-2 md:px-4 md:py-2 whitespace-nowrap"
             onClick={() => navigate("/quote")}
           >
-            <span className="hidden sm:inline">📩 {t('header.askQuote')}</span>
-            <span className="sm:hidden">📩</span>
+            📩 {t('header.askQuote')}
           </Button>
 
           {user ? (
