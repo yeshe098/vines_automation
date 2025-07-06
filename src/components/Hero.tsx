@@ -13,30 +13,14 @@ export const Hero = () => {
       <div className="container mx-auto text-center relative z-10">
         <div className="max-w-4xl mx-auto">
           <h1 className="text-5xl md:text-7xl font-bold text-white mb-6 leading-tight">
-            Find Your Perfect
-            <span className="bg-gradient-to-r from-blue-400 to-blue-600 bg-clip-text text-transparent"> AI Calling Agent</span>
+            We create a perfect 
+            <span className="bg-gradient-to-r from-blue-400 to-blue-600 bg-clip-text text-transparent"> AI calling agent </span>
+            specifically for your business needs.
           </h1>
           
-          <p className="text-xl text-slate-300 mb-8 max-w-3xl mx-auto">
-            Your AI-powered voice agent for customer service, cold calls, inbound and outbound communication, appointment scheduling, reminders, and more.
+          <p className="text-xl text-slate-300 mb-12 max-w-3xl mx-auto">
+            We'll build your AI agent exactly how you want it – personalized to your company, your use case, and your workflow.
           </p>
-          
-          <div className="flex flex-col sm:flex-row gap-4 justify-center mb-12">
-            <Button 
-              size="lg" 
-              className="bg-gradient-to-r from-blue-600 to-blue-800 hover:from-blue-700 hover:to-blue-900 text-white px-8 py-4 text-lg"
-            >
-              🎙️ Talk to the Voice Agent Now
-            </Button>
-            <Button 
-              size="lg" 
-              variant="outline" 
-              className="border-slate-600 text-white hover:bg-slate-800 px-8 py-4 text-lg"
-              onClick={() => navigate('/personalized')}
-            >
-              🤖 Try Your Own Personalized Voice Agent
-            </Button>
-          </div>
           
           <div className="mt-16">
             <h2 className="text-3xl font-bold text-white mb-8">Why Use AI Calling Agents?</h2>

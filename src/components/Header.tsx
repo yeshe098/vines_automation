@@ -29,24 +29,28 @@ export const Header = () => {
           <span className="text-xl font-bold text-white">Vines Calling Agents</span>
         </div>
         
-        <div className="hidden md:flex items-center flex-1 max-w-md mx-8">
-          <div className="relative w-full">
-            <Search className="absolute left-3 top-1/2 transform -translate-y-1/2 text-slate-400 w-4 h-4" />
-            <input
-              type="text"
-              placeholder="Search voice agents..."
-              className="w-full pl-10 pr-4 py-2 bg-slate-800 border border-slate-700 rounded-lg text-white placeholder-slate-400 focus:outline-none focus:ring-2 focus:ring-blue-500"
-              onFocus={() => {}}
-            />
-          </div>
-        </div>
+        <nav className="hidden md:flex items-center space-x-8">
+          <button 
+            onClick={() => navigate('/features')}
+            className="text-slate-300 hover:text-white transition-colors"
+          >
+            What Our AI Agents Can Do
+          </button>
+          <button 
+            onClick={() => navigate('/pricing')}
+            className="text-slate-300 hover:text-white transition-colors"
+          >
+            Pricing
+          </button>
+        </nav>
         
         <div className="flex items-center space-x-4">
-          <select className="bg-slate-800 border border-slate-600 text-white rounded px-3 py-1 text-sm">
-            <option value="en">🇬🇧 English</option>
-            <option value="nl">🇳🇱 Dutch</option>
-          </select>
-          
+          <Button 
+            className="bg-gradient-to-r from-blue-600 to-blue-800 hover:from-blue-700 hover:to-blue-900 text-white"
+            onClick={() => navigate('/quote')}
+          >
+            📩 Ask for a Quote
+          </Button>
           
           {user ? (
             <DropdownMenu>
@@ -74,23 +78,20 @@ export const Header = () => {
               </DropdownMenuContent>
             </DropdownMenu>
           ) : (
-            <>
-              <Button 
-                variant="outline" 
-                className="border-slate-600 text-white hover:bg-slate-800"
-                onClick={() => navigate('/auth')}
-              >
-                <User className="w-4 h-4 mr-2" />
-                Sign In
-              </Button>
-              <Button 
-                className="bg-gradient-to-r from-blue-600 to-blue-800 hover:from-blue-700 hover:to-blue-900 text-white"
-                onClick={() => navigate('/quote')}
-              >
-                📩 Ask for a Quote
-              </Button>
-            </>
+            <Button 
+              variant="outline" 
+              className="border-slate-600 text-white hover:bg-slate-800"
+              onClick={() => navigate('/auth')}
+            >
+              <User className="w-4 h-4 mr-2" />
+              Sign In
+            </Button>
           )}
+          
+          <select className="bg-slate-800 border border-slate-600 text-white rounded px-3 py-1 text-sm">
+            <option value="en">🇬🇧 EN</option>
+            <option value="nl">🇳🇱 NL</option>
+          </select>
         </div>
       </div>
     </header>
