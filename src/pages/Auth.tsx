@@ -7,7 +7,6 @@ import { Input } from '@/components/ui/input';
 import { Label } from '@/components/ui/label';
 import { Card, CardContent, CardDescription, CardHeader, CardTitle } from '@/components/ui/card';
 import { Tabs, TabsContent, TabsList, TabsTrigger } from '@/components/ui/tabs';
-import { Mic } from 'lucide-react';
 import { useToast } from '@/hooks/use-toast';
 import { useLanguage } from '@/contexts/LanguageContext';
 
@@ -66,7 +65,7 @@ const Auth = () => {
         <CardHeader className="text-center p-4 sm:p-6">
           <div className="flex items-center justify-center space-x-2 sm:space-x-3 mb-3 sm:mb-4">
             <img 
-              src="/lovable-uploads/735ff7a4-de4c-4992-878f-ad89169a9780.png" 
+              src="/logo.jpeg" 
               alt="Vines Automations Logo" 
               className="w-10 h-10 sm:w-12 sm:h-12"
             />

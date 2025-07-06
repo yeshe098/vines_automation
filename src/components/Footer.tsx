@@ -1,5 +1,5 @@
 
-import { Mic, Twitter, Github, Linkedin } from "lucide-react";
+import { Twitter, Github, Linkedin } from "lucide-react";
 import { useLanguage } from "@/contexts/LanguageContext";
 
 export const Footer = () => {
@@ -11,9 +11,11 @@ export const Footer = () => {
         <div className="grid grid-cols-1 sm:grid-cols-2 lg:grid-cols-3 gap-6 sm:gap-8 mb-6 sm:mb-8">
           <div className="col-span-1 sm:col-span-2 lg:col-span-1">
             <div className="flex items-center space-x-2 mb-4">
-              <div className="w-8 h-8 bg-gradient-to-r from-blue-500 to-purple-600 rounded-lg flex items-center justify-center">
-                <Mic className="w-5 h-5 text-white" />
-              </div>
+              <img 
+                src="/logo.jpeg" 
+                alt="Vines Calling Agents Logo" 
+                className="w-8 h-8"
+              />
               <span className="text-lg sm:text-xl font-bold text-white">Vines Calling Agents</span>
             </div>
             <p className="text-slate-400 mb-4 text-sm sm:text-base max-w-md">

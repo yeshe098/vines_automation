@@ -32,7 +32,7 @@ export const Header = () => {
           onClick={() => navigate("/")}
         >
           <img
-            src="/lovable-uploads/735ff7a4-de4c-4992-878f-ad89169a9780.png"
+            src="/logo.jpeg"
             alt="Vines Automations Logo"
             className="w-8 h-8 sm:w-10 sm:h-10 flex-shrink-0"
           />

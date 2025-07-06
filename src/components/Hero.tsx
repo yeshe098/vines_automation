@@ -26,12 +26,11 @@ export const Hero = () => {
 
           <div className="flex flex-col sm:flex-row gap-3 sm:gap-4 justify-center items-center mb-8 sm:mb-12 md:mb-16 px-2">
             <Button 
-              className="w-full sm:w-auto bg-gradient-to-r from-blue-600 to-purple-600 hover:from-blue-700 hover:to-purple-700 text-white px-6 sm:px-8 py-3 sm:py-4 rounded-lg text-base sm:text-lg font-semibold shadow-lg hover:shadow-xl transform hover:scale-105 transition-all duration-300"
+              className="w-full sm:w-auto bg-gradient-to-r from-blue-600 to-purple-600 hover:from-blue-700 hover:to-purple-700 text-white px-4 sm:px-6 md:px-8 py-3 sm:py-4 rounded-lg text-sm sm:text-base md:text-lg font-semibold shadow-lg hover:shadow-xl transform hover:scale-105 transition-all duration-300"
               onClick={() => navigate('/features')}
             >
               <Settings className="w-4 h-4 sm:w-5 sm:h-5 mr-2" />
-              <span className="hidden xs:inline">{t('hero.featuresButton')}</span>
-              <span className="xs:hidden">{t('hero.featuresButton').split(' ').slice(0, 2).join(' ')}</span>
+              <span>{t('hero.featuresButton')}</span>
             </Button>
             <Button 
               className="w-full sm:w-auto bg-gradient-to-r from-green-600 to-teal-600 hover:from-green-700 hover:to-teal-700 text-white px-6 sm:px-8 py-3 sm:py-4 rounded-lg text-base sm:text-lg font-semibold shadow-lg hover:shadow-xl transform hover:scale-105 transition-all duration-300"
