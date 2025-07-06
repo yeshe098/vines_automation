@@ -126,78 +126,78 @@ const Dashboard = () => {
     <div className="min-h-screen bg-gradient-to-br from-slate-900 via-purple-900 to-slate-900">
       <Header />
       
-      <div className="container mx-auto px-4 py-8">
-        <div className="mb-8">
-          <h1 className="text-4xl font-bold text-white mb-2">
+      <div className="container mx-auto px-3 sm:px-4 py-6 sm:py-8">
+        <div className="mb-6 sm:mb-8">
+          <h1 className="text-2xl sm:text-3xl md:text-4xl font-bold text-white mb-2">
             Welcome back, {profile?.full_name || user?.email}!
           </h1>
-          <p className="text-slate-200">Manage your voice agents and account settings</p>
+          <p className="text-slate-200 text-sm sm:text-base">Manage your voice agents and account settings</p>
         </div>
 
-        <Tabs defaultValue="agents" className="space-y-6">
-          <TabsList className="bg-slate-800/90 border-slate-600">
-            <TabsTrigger value="agents" className="text-white data-[state=active]:bg-slate-700">
-              <Phone className="w-4 h-4 mr-2" />
+        <Tabs defaultValue="agents" className="space-y-4 sm:space-y-6">
+          <TabsList className="bg-slate-800/90 border-slate-600 flex flex-col sm:flex-row w-full sm:w-auto">
+            <TabsTrigger value="agents" className="text-white data-[state=active]:bg-slate-700 w-full sm:w-auto text-sm sm:text-base">
+              <Phone className="w-3 h-3 sm:w-4 sm:h-4 mr-2" />
               My Voice Agents
             </TabsTrigger>
-            <TabsTrigger value="orders" className="text-white data-[state=active]:bg-slate-700">
-              <ShoppingBag className="w-4 h-4 mr-2" />
+            <TabsTrigger value="orders" className="text-white data-[state=active]:bg-slate-700 w-full sm:w-auto text-sm sm:text-base">
+              <ShoppingBag className="w-3 h-3 sm:w-4 sm:h-4 mr-2" />
               Purchase History
             </TabsTrigger>
           </TabsList>
 
-          <TabsContent value="agents" className="space-y-6">
-            <div className="grid grid-cols-1 md:grid-cols-4 gap-6 mb-6">
+          <TabsContent value="agents" className="space-y-4 sm:space-y-6">
+            <div className="grid grid-cols-1 sm:grid-cols-2 lg:grid-cols-4 gap-4 sm:gap-6 mb-4 sm:mb-6">
               <Card className="bg-slate-800/90 border-slate-600">
-                <CardContent className="p-6">
+                <CardContent className="p-4 sm:p-6">
                   <div className="flex items-center justify-between">
                     <div>
-                      <p className="text-slate-200 text-sm">Active Agents</p>
-                      <p className="text-2xl font-bold text-white">
+                      <p className="text-slate-200 text-xs sm:text-sm">Active Agents</p>
+                      <p className="text-xl sm:text-2xl font-bold text-white">
                         {orders.filter(o => o.status === 'completed').length}
                       </p>
                     </div>
-                    <Phone className="w-8 h-8 text-green-400" />
+                    <Phone className="w-6 h-6 sm:w-8 sm:h-8 text-green-400" />
                   </div>
                 </CardContent>
               </Card>
 
               <Card className="bg-slate-800/90 border-slate-600">
-                <CardContent className="p-6">
+                <CardContent className="p-4 sm:p-6">
                   <div className="flex items-center justify-between">
                     <div>
-                      <p className="text-slate-200 text-sm">Setting Up</p>
-                      <p className="text-2xl font-bold text-white">
+                      <p className="text-slate-200 text-xs sm:text-sm">Setting Up</p>
+                      <p className="text-xl sm:text-2xl font-bold text-white">
                         {orders.filter(o => o.status === 'pending').length}
                       </p>
                     </div>
-                    <Settings className="w-8 h-8 text-yellow-400" />
+                    <Settings className="w-6 h-6 sm:w-8 sm:h-8 text-yellow-400" />
                   </div>
                 </CardContent>
               </Card>
 
               <Card className="bg-slate-800/90 border-slate-600">
-                <CardContent className="p-6">
+                <CardContent className="p-4 sm:p-6">
                   <div className="flex items-center justify-between">
                     <div>
-                      <p className="text-slate-200 text-sm">Total Purchases</p>
-                      <p className="text-2xl font-bold text-white">{orders.length}</p>
+                      <p className="text-slate-200 text-xs sm:text-sm">Total Purchases</p>
+                      <p className="text-xl sm:text-2xl font-bold text-white">{orders.length}</p>
                     </div>
-                    <ShoppingBag className="w-8 h-8 text-blue-400" />
+                    <ShoppingBag className="w-6 h-6 sm:w-8 sm:h-8 text-blue-400" />
                   </div>
                 </CardContent>
               </Card>
 
               <Card className="bg-slate-800/90 border-slate-600">
-                <CardContent className="p-6">
+                <CardContent className="p-4 sm:p-6">
                   <div className="flex items-center justify-between">
                     <div>
-                      <p className="text-slate-200 text-sm">Total Invested</p>
-                      <p className="text-2xl font-bold text-white">
+                      <p className="text-slate-200 text-xs sm:text-sm">Total Invested</p>
+                      <p className="text-xl sm:text-2xl font-bold text-white">
                         ${orders.reduce((sum, order) => sum + Number(order.amount), 0)}
                       </p>
                     </div>
-                    <DollarSign className="w-8 h-8 text-purple-400" />
+                    <DollarSign className="w-6 h-6 sm:w-8 sm:h-8 text-purple-400" />
                   </div>
                 </CardContent>
               </Card>
@@ -205,48 +205,48 @@ const Dashboard = () => {
 
             <div className="space-y-4">
               <Card className="bg-slate-800/90 border-slate-600">
-                <CardContent className="p-12 text-center">
-                  <Phone className="w-12 h-12 text-slate-300 mx-auto mb-4" />
+                <CardContent className="p-8 sm:p-12 text-center">
+                  <Phone className="w-10 h-10 sm:w-12 sm:h-12 text-slate-300 mx-auto mb-4" />
                   <h3 className="text-white text-lg font-semibold mb-2">No voice agents yet</h3>
-                  <p className="text-slate-200 mb-4">Contact us to get started with your AI voice agents</p>
+                  <p className="text-slate-200 mb-4 text-sm sm:text-base">Contact us to get started with your AI voice agents</p>
                 </CardContent>
               </Card>
             </div>
           </TabsContent>
 
-          <TabsContent value="orders" className="space-y-6">
+          <TabsContent value="orders" className="space-y-4 sm:space-y-6">
             <div className="space-y-4">
-              <h2 className="text-2xl font-bold text-white">Purchase History</h2>
+              <h2 className="text-xl sm:text-2xl font-bold text-white">Purchase History</h2>
               
               {orders.map((order) => (
                 <Card key={order.id} className="bg-slate-800/90 border-slate-600">
-                  <CardContent className="p-6">
-                    <div className="flex items-center justify-between">
+                  <CardContent className="p-4 sm:p-6">
+                    <div className="flex flex-col sm:flex-row items-start sm:items-center justify-between space-y-4 sm:space-y-0">
                       <div className="flex-1">
-                        <div className="flex items-center space-x-3 mb-2">
-                          <h3 className="text-white font-semibold">
+                        <div className="flex flex-col sm:flex-row items-start sm:items-center space-y-2 sm:space-y-0 sm:space-x-3 mb-2">
+                          <h3 className="text-white font-semibold text-sm sm:text-base">
                             Order #{order.id.slice(0, 8)}
                           </h3>
-                          <Badge className={`${getStatusColor(order.status)} text-white`}>
+                          <Badge className={`${getStatusColor(order.status)} text-white text-xs sm:text-sm`}>
                             {getStatusText(order.status)}
                           </Badge>
                         </div>
-                        <p className="text-slate-200 text-sm mb-1">
+                        <p className="text-slate-200 text-xs sm:text-sm mb-1">
                           Agent: {order.voice_agents.name}
                         </p>
-                        <p className="text-slate-300 text-sm mb-2">
+                        <p className="text-slate-300 text-xs sm:text-sm mb-2">
                           {order.voice_agents.title}
                         </p>
                         <p className="text-slate-400 text-xs">
                           Purchased: {new Date(order.created_at).toLocaleString()}
                         </p>
                       </div>
-                      <div className="text-right">
-                        <div className="text-xl font-bold text-white mb-2">
+                      <div className="text-left sm:text-right w-full sm:w-auto">
+                        <div className="text-lg sm:text-xl font-bold text-white mb-2">
                           ${order.amount}
                         </div>
-                        <Button variant="outline" size="sm" className="border-slate-500 text-slate-200">
-                          <Eye className="w-4 h-4 mr-1" />
+                        <Button variant="outline" size="sm" className="border-slate-500 text-slate-200 w-full sm:w-auto">
+                          <Eye className="w-3 h-3 sm:w-4 sm:h-4 mr-1" />
                           Details
                         </Button>
                       </div>
@@ -257,10 +257,10 @@ const Dashboard = () => {
 
               {orders.length === 0 && (
                 <Card className="bg-slate-800/90 border-slate-600">
-                  <CardContent className="p-12 text-center">
-                    <ShoppingBag className="w-12 h-12 text-slate-300 mx-auto mb-4" />
+                  <CardContent className="p-8 sm:p-12 text-center">
+                    <ShoppingBag className="w-10 h-10 sm:w-12 sm:h-12 text-slate-300 mx-auto mb-4" />
                     <h3 className="text-white text-lg font-semibold mb-2">No purchases yet</h3>
-                    <p className="text-slate-200">Your purchase history will appear here</p>
+                    <p className="text-slate-200 text-sm sm:text-base">Your purchase history will appear here</p>
                   </CardContent>
                 </Card>
               )}

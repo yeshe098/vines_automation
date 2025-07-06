@@ -20,48 +20,48 @@ export const Header = () => {
 
   return (
     <header className="bg-slate-900/80 backdrop-blur-md border-b border-slate-800 sticky top-0 z-50">
-      <div className="container mx-auto px-4 py-4 flex items-center justify-between">
+      <div className="container mx-auto px-3 sm:px-4 py-3 sm:py-4 flex items-center justify-between">
         <div
-          className="flex items-center space-x-3 cursor-pointer"
+          className="flex items-center space-x-2 sm:space-x-3 cursor-pointer min-w-0 flex-shrink-0"
           onClick={() => navigate("/")}
         >
           <img
             src="/lovable-uploads/735ff7a4-de4c-4992-878f-ad89169a9780.png"
             alt="Vines Automations Logo"
-            className="w-10 h-10"
+            className="w-8 h-8 sm:w-10 sm:h-10 flex-shrink-0"
           />
-          <span className="text-xl font-bold text-white hidden sm:block">
+          <span className="text-lg sm:text-xl font-bold text-white hidden xs:block truncate">
             Vines Automations
           </span>
         </div>
 
-        <div className="flex items-center space-x-2 md:space-x-4">
+        <div className="flex items-center space-x-1 sm:space-x-2 md:space-x-4 flex-shrink-0">
           <Button
-            className="bg-gradient-to-r from-blue-600 to-blue-800 hover:from-blue-700 hover:to-blue-900 text-white text-sm px-3 py-2 md:px-4 md:py-2"
+            className="bg-gradient-to-r from-blue-600 to-blue-800 hover:from-blue-700 hover:to-blue-900 text-white text-xs sm:text-sm px-2 py-1.5 sm:px-3 sm:py-2 md:px-4 md:py-2 whitespace-nowrap"
             onClick={() => navigate("/quote")}
           >
             <span className="hidden sm:inline">📩 Ask for a Quote</span>
-            <span className="sm:hidden">Quote</span>
+            <span className="sm:hidden">📩</span>
           </Button>
 
           {user ? (
             <DropdownMenu>
               <DropdownMenuTrigger asChild>
-                <Button className="bg-slate-700 text-white hover:bg-slate-600 border-slate-600">
-                  <User className="w-4 h-4 mr-2" />
-                  <span className="hidden sm:inline">Account</span>
+                <Button className="bg-slate-700 text-white hover:bg-slate-600 border-slate-600 text-xs sm:text-sm px-2 py-1.5 sm:px-3 sm:py-2">
+                  <User className="w-3 h-3 sm:w-4 sm:h-4 sm:mr-2" />
+                  <span className="hidden md:inline ml-1">Account</span>
                 </Button>
               </DropdownMenuTrigger>
-              <DropdownMenuContent className="bg-slate-800 border-slate-700">
+              <DropdownMenuContent className="bg-slate-800 border-slate-700 w-40">
                 <DropdownMenuItem
-                  className="text-white hover:bg-slate-700"
+                  className="text-white hover:bg-slate-700 text-sm"
                   onClick={() => navigate("/dashboard")}
                 >
                   <Settings className="w-4 h-4 mr-2" />
                   Dashboard
                 </DropdownMenuItem>
                 <DropdownMenuItem
-                  className="text-white hover:bg-slate-700"
+                  className="text-white hover:bg-slate-700 text-sm"
                   onClick={handleSignOut}
                 >
                   <LogOut className="w-4 h-4 mr-2" />
@@ -71,15 +71,15 @@ export const Header = () => {
             </DropdownMenu>
           ) : (
             <Button
-              className="bg-slate-700 text-white hover:bg-slate-600 border-slate-600"
+              className="bg-slate-700 text-white hover:bg-slate-600 border-slate-600 text-xs sm:text-sm px-2 py-1.5 sm:px-3 sm:py-2"
               onClick={() => navigate("/auth")}
             >
-              <User className="w-4 h-4 mr-2" />
-              <span className="hidden sm:inline">Sign In</span>
+              <User className="w-3 h-3 sm:w-4 sm:h-4 sm:mr-2" />
+              <span className="hidden md:inline ml-1">Sign In</span>
             </Button>
           )}
 
-          <select className="bg-slate-800 border border-slate-600 text-white rounded px-3 py-1 text-sm">
+          <select className="bg-slate-800 border border-slate-600 text-white rounded px-2 py-1 sm:px-3 sm:py-1 text-xs sm:text-sm min-w-0 flex-shrink-0">
             <option value="en">🇬🇧 EN</option>
             <option value="nl">🇳🇱 NL</option>
           </select>
