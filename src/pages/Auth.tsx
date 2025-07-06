@@ -9,8 +9,10 @@ import { Card, CardContent, CardDescription, CardHeader, CardTitle } from '@/com
 import { Tabs, TabsContent, TabsList, TabsTrigger } from '@/components/ui/tabs';
 import { Mic } from 'lucide-react';
 import { useToast } from '@/hooks/use-toast';
+import { useLanguage } from '@/contexts/LanguageContext';
 
 const Auth = () => {
+  const { t } = useLanguage();
   const [email, setEmail] = useState('');
   const [password, setPassword] = useState('');
   const [fullName, setFullName] = useState('');
@@ -70,22 +72,22 @@ const Auth = () => {
             />
             <span className="text-lg sm:text-xl font-bold text-white">Vines Automations</span>
           </div>
-          <CardTitle className="text-white text-lg sm:text-xl">Welcome</CardTitle>
+          <CardTitle className="text-white text-lg sm:text-xl">{t('auth.welcome')}</CardTitle>
           <CardDescription className="text-slate-300 text-sm sm:text-base">
-            Sign in to your account or create a new one
+            {t('auth.subtitle')}
           </CardDescription>
         </CardHeader>
         <CardContent className="p-4 sm:p-6">
           <Tabs defaultValue="signin">
             <TabsList className="grid w-full grid-cols-2 bg-slate-700">
-              <TabsTrigger value="signin" className="text-white data-[state=active]:bg-slate-600 text-sm sm:text-base">Sign In</TabsTrigger>
-              <TabsTrigger value="signup" className="text-white data-[state=active]:bg-slate-600 text-sm sm:text-base">Sign Up</TabsTrigger>
+              <TabsTrigger value="signin" className="text-white data-[state=active]:bg-slate-600 text-sm sm:text-base">{t('auth.signIn')}</TabsTrigger>
+              <TabsTrigger value="signup" className="text-white data-[state=active]:bg-slate-600 text-sm sm:text-base">{t('auth.signUp')}</TabsTrigger>
             </TabsList>
             
             <TabsContent value="signin">
               <form onSubmit={handleSignIn} className="space-y-3 sm:space-y-4">
                 <div>
-                  <Label htmlFor="email" className="text-white text-sm sm:text-base">Email</Label>
+                  <Label htmlFor="email" className="text-white text-sm sm:text-base">{t('auth.email')}</Label>
                   <Input
                     id="email"
                     type="email"
@@ -96,7 +98,7 @@ const Auth = () => {
                   />
                 </div>
                 <div>
-                  <Label htmlFor="password" className="text-white text-sm sm:text-base">Password</Label>
+                  <Label htmlFor="password" className="text-white text-sm sm:text-base">{t('auth.password')}</Label>
                   <Input
                     id="password"
                     type="password"
@@ -111,7 +113,7 @@ const Auth = () => {
                   className="w-full bg-gradient-to-r from-blue-600 to-purple-600 hover:from-blue-700 hover:to-purple-700 text-white text-sm sm:text-base"
                   disabled={loading}
                 >
-                  {loading ? 'Signing in...' : 'Sign In'}
+                  {loading ? t('auth.signingIn') : t('auth.signIn')}
                 </Button>
               </form>
             </TabsContent>
@@ -119,7 +121,7 @@ const Auth = () => {
             <TabsContent value="signup">
               <form onSubmit={handleSignUp} className="space-y-3 sm:space-y-4">
                 <div>
-                  <Label htmlFor="fullName" className="text-white text-sm sm:text-base">Full Name</Label>
+                  <Label htmlFor="fullName" className="text-white text-sm sm:text-base">{t('auth.fullName')}</Label>
                   <Input
                     id="fullName"
                     type="text"
@@ -130,7 +132,7 @@ const Auth = () => {
                   />
                 </div>
                 <div>
-                  <Label htmlFor="email" className="text-white text-sm sm:text-base">Email</Label>
+                  <Label htmlFor="email" className="text-white text-sm sm:text-base">{t('auth.email')}</Label>
                   <Input
                     id="email"
                     type="email"
@@ -141,7 +143,7 @@ const Auth = () => {
                   />
                 </div>
                 <div>
-                  <Label htmlFor="password" className="text-white text-sm sm:text-base">Password</Label>
+                  <Label htmlFor="password" className="text-white text-sm sm:text-base">{t('auth.password')}</Label>
                   <Input
                     id="password"
                     type="password"
@@ -156,7 +158,7 @@ const Auth = () => {
                   className="w-full bg-gradient-to-r from-blue-600 to-purple-600 hover:from-blue-700 hover:to-purple-700 text-white text-sm sm:text-base"
                   disabled={loading}
                 >
-                  {loading ? 'Creating account...' : 'Sign Up'}
+                  {loading ? t('auth.creatingAccount') : t('auth.signUp')}
                 </Button>
               </form>
             </TabsContent>

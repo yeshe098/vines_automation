@@ -1,6 +1,7 @@
 import { Button } from "@/components/ui/button";
 import { Mic, Search, User, LogOut, Settings } from "lucide-react";
 import { useAuth } from "@/contexts/AuthContext";
+import { useLanguage } from "@/contexts/LanguageContext";
 import { useNavigate } from "react-router-dom";
 import {
   DropdownMenu,
@@ -11,11 +12,16 @@ import {
 
 export const Header = () => {
   const { user, signOut } = useAuth();
+  const { language, setLanguage, t } = useLanguage();
   const navigate = useNavigate();
 
   const handleSignOut = async () => {
     await signOut();
     navigate("/");
+  };
+
+  const handleLanguageChange = (newLanguage: 'en' | 'nl') => {
+    setLanguage(newLanguage);
   };
 
   return (
@@ -40,7 +46,7 @@ export const Header = () => {
             className="bg-gradient-to-r from-blue-600 to-blue-800 hover:from-blue-700 hover:to-blue-900 text-white text-xs sm:text-sm px-2 py-1.5 sm:px-3 sm:py-2 md:px-4 md:py-2 whitespace-nowrap"
             onClick={() => navigate("/quote")}
           >
-            <span className="hidden sm:inline">📩 Ask for a Quote</span>
+            <span className="hidden sm:inline">📩 {t('header.askQuote')}</span>
             <span className="sm:hidden">📩</span>
           </Button>
 
@@ -49,7 +55,7 @@ export const Header = () => {
               <DropdownMenuTrigger asChild>
                 <Button className="bg-slate-700 text-white hover:bg-slate-600 border-slate-600 text-xs sm:text-sm px-2 py-1.5 sm:px-3 sm:py-2">
                   <User className="w-3 h-3 sm:w-4 sm:h-4 sm:mr-2" />
-                  <span className="hidden md:inline ml-1">Account</span>
+                  <span className="hidden md:inline ml-1">{t('header.account')}</span>
                 </Button>
               </DropdownMenuTrigger>
               <DropdownMenuContent className="bg-slate-800 border-slate-700 w-40">
@@ -58,14 +64,14 @@ export const Header = () => {
                   onClick={() => navigate("/dashboard")}
                 >
                   <Settings className="w-4 h-4 mr-2" />
-                  Dashboard
+                  {t('header.dashboard')}
                 </DropdownMenuItem>
                 <DropdownMenuItem
                   className="text-white hover:bg-slate-700 text-sm"
                   onClick={handleSignOut}
                 >
                   <LogOut className="w-4 h-4 mr-2" />
-                  Sign Out
+                  {t('header.signOut')}
                 </DropdownMenuItem>
               </DropdownMenuContent>
             </DropdownMenu>
@@ -75,11 +81,15 @@ export const Header = () => {
               onClick={() => navigate("/auth")}
             >
               <User className="w-3 h-3 sm:w-4 sm:h-4 sm:mr-2" />
-              <span className="hidden md:inline ml-1">Sign In</span>
+              <span className="hidden md:inline ml-1">{t('header.signIn')}</span>
             </Button>
           )}
 
-          <select className="bg-slate-800 border border-slate-600 text-white rounded px-2 py-1 sm:px-3 sm:py-1 text-xs sm:text-sm min-w-0 flex-shrink-0">
+          <select 
+            className="bg-slate-800 border border-slate-600 text-white rounded px-2 py-1 sm:px-3 sm:py-1 text-xs sm:text-sm min-w-0 flex-shrink-0"
+            value={language}
+            onChange={(e) => handleLanguageChange(e.target.value as 'en' | 'nl')}
+          >
             <option value="en">🇬🇧 EN</option>
             <option value="nl">🇳🇱 NL</option>
           </select>

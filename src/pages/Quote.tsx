@@ -9,8 +9,10 @@ import { Footer } from '@/components/Footer';
 import { Card, CardContent, CardHeader, CardTitle } from '@/components/ui/card';
 import { useToast } from '@/hooks/use-toast';
 import { sendQuoteRequest } from '@/lib/emailService';
+import { useLanguage } from '@/contexts/LanguageContext';
 
 const Quote = () => {
+  const { t } = useLanguage();
   const [formData, setFormData] = useState({
     fullName: '',
     companyName: '',
@@ -30,7 +32,7 @@ const Quote = () => {
     // Basic validation
     if (!formData.fullName || !formData.email || !formData.description) {
       toast({
-        title: "Please fill in required fields",
+        title: t('quote.required'),
         description: "Full name, email, and description are required.",
         variant: "destructive"
       });
@@ -44,8 +46,8 @@ const Quote = () => {
       
       if (success) {
         toast({
-          title: "Quote request submitted!",
-          description: "We'll contact you shortly with a custom offer.",
+          title: t('quote.thankYou'),
+          description: t('quote.thankYouMessage'),
         });
         setSubmitted(true);
       } else {
@@ -74,17 +76,17 @@ const Quote = () => {
       <div className="container mx-auto px-3 sm:px-4 py-12 sm:py-16">
         <Card className="max-w-2xl mx-auto bg-slate-800/90 border-slate-600">
           <CardHeader>
-            <CardTitle className="text-xl sm:text-2xl text-white text-center">Thank You!</CardTitle>
+            <CardTitle className="text-xl sm:text-2xl text-white text-center">{t('quote.thankYou')}</CardTitle>
           </CardHeader>
           <CardContent className="text-center">
             <p className="text-slate-200 mb-4 sm:mb-6 text-sm sm:text-base">
-              Thanks! We'll contact you shortly with a custom offer based on your business needs.
+              {t('quote.thankYouMessage')}
             </p>
             <Button 
               onClick={() => window.location.href = '/'}
               className="w-full sm:w-auto bg-gradient-to-r from-blue-600 to-blue-800 hover:from-blue-700 hover:to-blue-900"
             >
-              Back to Home
+              {t('quote.backHome')}
             </Button>
           </CardContent>
         </Card>
@@ -102,7 +104,7 @@ const Quote = () => {
         <div className="max-w-2xl mx-auto">
           <div className="text-center mb-6 sm:mb-8">
             <h1 className="text-2xl sm:text-3xl md:text-4xl font-bold text-white mb-3 sm:mb-4 px-2">
-              Tell Us What You Need – Get a Custom AI Voice Agent for Your Business
+              {t('quote.title')}
             </h1>
           </div>
 
@@ -111,7 +113,7 @@ const Quote = () => {
               <form onSubmit={handleSubmit} className="space-y-4 sm:space-y-6">
                 <div className="grid grid-cols-1 md:grid-cols-2 gap-3 sm:gap-4">
                   <div className="space-y-2">
-                    <Label htmlFor="fullName" className="text-slate-200 text-sm sm:text-base">Full Name *</Label>
+                    <Label htmlFor="fullName" className="text-slate-200 text-sm sm:text-base">{t('quote.fullName')} {t('quote.required')}</Label>
                     <Input
                       id="fullName"
                       value={formData.fullName}
@@ -122,7 +124,7 @@ const Quote = () => {
                   </div>
                   
                   <div className="space-y-2">
-                    <Label htmlFor="companyName" className="text-slate-200 text-sm sm:text-base">Company Name</Label>
+                    <Label htmlFor="companyName" className="text-slate-200 text-sm sm:text-base">{t('quote.companyName')}</Label>
                     <Input
                       id="companyName"
                       value={formData.companyName}
@@ -133,7 +135,7 @@ const Quote = () => {
                 </div>
 
                 <div className="space-y-2">
-                  <Label htmlFor="businessType" className="text-slate-200 text-sm sm:text-base">Business Type</Label>
+                  <Label htmlFor="businessType" className="text-slate-200 text-sm sm:text-base">{t('quote.businessType')}</Label>
                   <Input
                     id="businessType"
                     value={formData.businessType}
@@ -144,7 +146,7 @@ const Quote = () => {
 
                 <div className="grid grid-cols-1 md:grid-cols-2 gap-3 sm:gap-4">
                   <div className="space-y-2">
-                    <Label htmlFor="email" className="text-slate-200 text-sm sm:text-base">Email Address *</Label>
+                    <Label htmlFor="email" className="text-slate-200 text-sm sm:text-base">{t('quote.email')} {t('quote.required')}</Label>
                     <Input
                       id="email"
                       type="email"
@@ -156,7 +158,7 @@ const Quote = () => {
                   </div>
                   
                   <div className="space-y-2">
-                    <Label htmlFor="phone" className="text-slate-200 text-sm sm:text-base">Phone Number (optional)</Label>
+                    <Label htmlFor="phone" className="text-slate-200 text-sm sm:text-base">{t('quote.phone')}</Label>
                     <Input
                       id="phone"
                       value={formData.phone}
@@ -167,27 +169,27 @@ const Quote = () => {
                 </div>
 
                 <div className="space-y-2">
-                  <Label className="text-slate-200 text-sm sm:text-base">Preferred Language</Label>
+                  <Label className="text-slate-200 text-sm sm:text-base">{t('quote.language')}</Label>
                   <Select value={formData.language} onValueChange={(value) => handleInputChange('language', value)}>
                     <SelectTrigger className="bg-slate-700 border-slate-600 text-white text-sm sm:text-base">
-                      <SelectValue placeholder="Select preferred language" />
+                      <SelectValue placeholder={t('quote.selectLanguage')} />
                     </SelectTrigger>
                     <SelectContent className="bg-slate-800 border-slate-600">
-                      <SelectItem value="english" className="text-white">🇬🇧 English</SelectItem>
-                      <SelectItem value="dutch" className="text-white">🇳🇱 Dutch</SelectItem>
+                      <SelectItem value="english" className="text-white">{t('quote.english')}</SelectItem>
+                      <SelectItem value="dutch" className="text-white">{t('quote.dutch')}</SelectItem>
                     </SelectContent>
                   </Select>
                 </div>
 
                 <div className="space-y-2">
                   <Label htmlFor="description" className="text-slate-200 text-sm sm:text-base">
-                    Describe exactly what you want your AI agent to do *
+                    {t('quote.description')} {t('quote.required')}
                   </Label>
                   <Textarea
                     id="description"
                     value={formData.description}
                     onChange={(e) => handleInputChange('description', e.target.value)}
-                    placeholder="What kind of calls? Customer service, appointment setting, cold calling? What kind of business is it for?"
+                    placeholder={t('quote.descriptionPlaceholder')}
                     className="bg-slate-700 border-slate-600 text-white min-h-24 sm:min-h-32 text-sm sm:text-base"
                     required
                   />
@@ -198,7 +200,7 @@ const Quote = () => {
                   className="w-full bg-gradient-to-r from-blue-600 to-blue-800 hover:from-blue-700 hover:to-blue-900 text-white py-2.5 sm:py-3 text-sm sm:text-base"
                   disabled={isSubmitting}
                 >
-                  {isSubmitting ? 'Sending Request...' : 'Submit Request'}
+                  {isSubmitting ? t('quote.submitting') : t('quote.submit')}
                 </Button>
               </form>
             </CardContent>

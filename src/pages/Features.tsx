@@ -1,71 +1,74 @@
 import { Header } from "@/components/Header";
 import { Footer } from "@/components/Footer";
 import { CheckCircle, Calendar, Phone, Bell, Users, UserCheck, PhoneIncoming, Megaphone, Settings, BarChart3 } from "lucide-react";
+import { useLanguage } from "@/contexts/LanguageContext";
 
 const Features = () => {
+  const { t } = useLanguage();
+
   const features = [
     {
       icon: Phone,
-      title: "Cold Calling",
-      description: "Call leads, follow smart scripts, qualify them live"
+      title: t('features.coldCalling'),
+      description: t('features.coldCallingDesc')
     },
     {
       icon: Calendar,
-      title: "Appointment Scheduling",
-      description: "Syncs with Google or Outlook Calendar. Books, confirms, and reschedules automatically"
+      title: t('features.appointments'),
+      description: t('features.appointmentsDesc')
     },
     {
       icon: Users,
-      title: "Customer Service", 
-      description: "Answers FAQs, supports customers, 24/7. Can route complex cases to a human"
+      title: t('features.customerService'), 
+      description: t('features.customerServiceDesc')
     },
     {
       icon: Bell,
-      title: "Reminders & Follow-Ups",
-      description: "Automated calls for appointments, invoices, after-sales, etc."
+      title: t('features.reminders'),
+      description: t('features.remindersDesc')
     },
     {
       icon: UserCheck,
-      title: "Lead Qualification",
-      description: "Screens potential customers with intelligent questions. Updates CRM automatically"
+      title: t('features.leadQualification'),
+      description: t('features.leadQualificationDesc')
     },
     {
       icon: PhoneIncoming,
-      title: "Inbound Reception",
-      description: "Acts as a digital receptionist for all inbound calls"
+      title: t('features.inboundReception'),
+      description: t('features.inboundReceptionDesc')
     },
     {
       icon: Megaphone,
-      title: "Outbound Notifications",
-      description: "Call existing clients with updates, policy changes, or promotions"
+      title: t('features.outboundNotifications'),
+      description: t('features.outboundNotificationsDesc')
     },
     {
       icon: Settings,
-      title: "Custom Workflows",
-      description: "Build any custom logic per business or sector (clinics, agencies, services, etc.)"
+      title: t('features.customWorkflows'),
+      description: t('features.customWorkflowsDesc')
     },
     {
       icon: BarChart3,
-      title: "📊 Integrated Agent Dashboard",
-      description: "View all agent activity: inbound/outbound calls, call duration, and conversion stats. Full call history, analytics, and performance tracking. Access to call transcripts or summaries. Dashboard is account-specific: each user only sees their own data. Accessible after login via the website"
+      title: t('features.dashboard'),
+      description: t('features.dashboardDesc')
     }
   ];
 
   const integrations = [
     {
-      category: "Calendars",
+      category: t('features.calendars'),
       tools: ["Google Calendar", "Outlook", "Apple Calendar", "Microsoft 365"]
     },
     {
-      category: "CRMs & Sales Tools", 
+      category: t('features.crms'), 
       tools: ["HubSpot", "Salesforce", "Zoho CRM", "Pipedrive", "Monday.com", "Notion", "Airtable"]
     },
     {
-      category: "Messaging & Communication",
+      category: t('features.messaging'),
       tools: ["WhatsApp", "Slack", "Gmail & Outlook", "SMS via Twilio"]
     },
     {
-      category: "Other Useful Tools",
+      category: t('features.otherTools'),
       tools: ["Stripe", "Shopify", "Google Sheets", "Calendly", "Custom Webhooks"]
     }
   ];
@@ -78,10 +81,10 @@ const Features = () => {
         <div className="container mx-auto max-w-6xl">
           <div className="text-center mb-12 sm:mb-16">
             <h1 className="text-2xl sm:text-3xl md:text-4xl lg:text-5xl xl:text-6xl font-bold text-white mb-4 sm:mb-6 px-2">
-              What Our AI Agents Can Do
+              {t('features.title')}
             </h1>
             <p className="text-lg sm:text-xl text-slate-300 max-w-3xl mx-auto px-2">
-              Discover the full range of capabilities our AI calling agents offer for your business
+              {t('features.subtitle')}
             </p>
           </div>
 
@@ -102,10 +105,10 @@ const Features = () => {
           <div className="bg-slate-800/30 backdrop-blur-sm border border-slate-700 rounded-xl p-4 sm:p-6 lg:p-8">
             <div className="text-center mb-8 sm:mb-12">
               <h2 className="text-2xl sm:text-3xl md:text-4xl font-bold text-white mb-3 sm:mb-4 px-2">
-                Connects With Over 5,000+ Tools
+                {t('features.integrationsTitle')}
               </h2>
               <p className="text-lg sm:text-xl text-slate-300 px-2">
-                Our AI agents integrate with over 5,000+ apps and tools via Zapier, Make.com, or API.
+                {t('features.integrationsSubtitle')}
               </p>
             </div>
 
